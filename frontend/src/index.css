@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+body {
+    font-family: "Montserrat", "system-ui", sans-serif;
+}
+
+.home_banner {
+    /* background-image: url("./images/5157430_32406.jpg"); */
+    background-size: cover;
+    background-position: start;
+}
+
+.slider_inner {
+    width: 100% !important;
+}
+
+.admin_side_options:hover {
+    background-color: #d5e9ff;
+    color: #1385ff;
+    transition: 0.5s;
+}
+
+.admin_sidebar::-webkit-scrollbar {
+    display: none;
+}
+
+
+input[type="file"]::-webkit-file-upload-button {
+    background-color: #1385ff;
+    border: 0;
+    color: white;
+    padding: 5px 15px;
+    border-radius: 50px;
+}

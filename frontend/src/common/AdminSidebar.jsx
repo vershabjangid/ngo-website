@@ -1,0 +1,43 @@
+import React from 'react'
+import { FaHome, FaInfo, FaPhoneAlt } from 'react-icons/fa'
+import { LuLayoutDashboard } from 'react-icons/lu'
+import { Link } from 'react-router-dom'
+import { Logo } from './Logo'
+
+export function AdminSidebar() {
+    return (
+        <section className='admin_sidebar w-[300px] h-[100%] px-2 overflow-y-scroll bg-[white]'>
+            <div className='flex  items-center my-3'>
+                <div className='w-[60px]'>
+                    <Logo />
+                </div>
+
+                <div className='ms-2'>
+                    <p className='text-[10px] font-[600]'>RESERVE CATEGORY & MINORITY</p>
+                    <p className='text-[8px]'>INDIAN CHAMBER OF COMMERCE & INDUSTRY</p>
+                </div>
+            </div>
+            <Link to={"/dashboard"} className='admin_side_options w-[100%] rounded-[20px] font-[600]  flex items-center p-3'>
+                <LuLayoutDashboard className='me-2 text-[20px]' /> Dashboard
+            </Link>
+
+            <Link to={"/dash-home"} className='admin_side_options w-[100%] rounded-[20px] font-[600]    flex items-center p-3'>
+                <FaHome className='me-2 text-[20px]' /> Home
+            </Link>
+
+            <Link to={"/dash-about"} className='admin_side_options w-[100%] rounded-[20px] font-[600]   flex items-center p-3'>
+                <FaInfo className='me-2 text-[20px]' /> About  Us
+            </Link>
+
+            <Link to={"/dash-contact"} className='admin_side_options w-[100%] rounded-[20px] font-[600]   flex items-center p-3'>
+                <FaPhoneAlt className='me-2 text-[20px]' /> Contact Us
+            </Link>
+
+
+            <Link className='admin_side_options w-[100%]  flex items-center rounded-[20px] font-[600]   p-3'>
+                <FaHome className='me-2 text-[20px]' /> Home
+            </Link>
+
+        </section>
+    )
+}

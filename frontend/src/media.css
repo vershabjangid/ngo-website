@@ -1,0 +1,171 @@
+@media screen and (max-height:400px) {
+    .home_banner {
+        height: auto;
+    }
+}
+
+@media screen and (min-width:1600px) {
+    .main {
+        width: 1600px;
+    }
+}
+
+@media screen and (max-width:1100px) {
+    .home_about_us {
+        flex-direction: column;
+    }
+
+    .home_about_us>section {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width:920px) {
+    .menubar {
+        display: block;
+        margin-left: 10px;
+    }
+
+    .register_header_btn {
+        display: none !important;
+    }
+
+    .header_heading {
+        font-size: 25px;
+    }
+
+    .header_sub_heading {
+        font-size: 15px;
+    }
+
+    .megamenu {
+        display: block;
+    }
+
+    .megamenu_heading {
+        font-size: 11px;
+    }
+
+    .megamenu_sub_heading {
+        font-size: 8px;
+    }
+
+    .banner_menubar {
+        display: none;
+    }
+}
+
+
+
+@media screen and (max-width:680px) {
+
+    .header_heading {
+        font-size: 20px;
+    }
+
+    .header_sub_heading {
+        font-size: 12px;
+    }
+}
+
+
+@media screen and (max-width:600px) {
+
+    .header_heading {
+        font-size: 18px;
+    }
+
+    .header_sub_heading {
+        font-size: 11px;
+    }
+
+    .Logo_section {
+        width: 60px;
+    }
+
+    .head_login_btn {
+        font-size: 12px;
+        display: none;
+    }
+
+    .quick_links_btn {
+        display: none;
+    }
+
+    .bottom_quick_Links {
+        display: block;
+    }
+
+    .home_heading {
+        font-size: 25px;
+        text-align: center;
+    }
+
+    .home_logo_section {
+        width: 100px;
+    }
+
+    .home_heading {
+        font-size: 30px;
+    }
+
+    .home_sub_heading {
+        font-size: 20px;
+    }
+}
+
+
+
+@media screen and (max-width:470px) {
+    .home_logo_section {
+        width: 70px;
+    }
+
+    .home_heading {
+        width: 100%;
+        font-size: 25px;
+    }
+
+    .home_sub_heading {
+        font-size: 15px;
+    }
+}
+
+
+
+@media screen and (max-width:430px) {
+
+    .header_heading {
+        font-size: 12px;
+    }
+
+    .header_sub_heading {
+        font-size: 8px;
+    }
+}
+
+
+
+@media screen and (max-width:400px) {
+    .home_banner {
+        height: auto;
+    }
+
+    .home_banner>section {
+        padding: 30px 10px;
+    }
+
+    .megamenu {
+        width: 100%;
+    }
+
+    .megamenu_btn {
+        width: 90%;
+    }
+
+    .home_heading {
+        font-size: 20px;
+        text-align: center;
+        width: 100%;
+    }
+}
