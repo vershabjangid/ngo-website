@@ -112,9 +112,16 @@
     .home_sub_heading {
         font-size: 20px;
     }
+
+
 }
 
+@media screen and (max-width:530px) {
 
+    .home_banner_slides{
+        height: auto;
+    }
+}
 
 @media screen and (max-width:470px) {
     .home_logo_section {

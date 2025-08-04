@@ -3,6 +3,8 @@ import { FaHome, FaInfo, FaPhoneAlt } from 'react-icons/fa'
 import { LuLayoutDashboard } from 'react-icons/lu'
 import { Link } from 'react-router-dom'
 import { Logo } from './Logo'
+import { GoGoal } from 'react-icons/go'
+import { IoMdPhotos } from 'react-icons/io'
 
 export function AdminSidebar() {
     return (
@@ -24,6 +26,16 @@ export function AdminSidebar() {
             <Link to={"/dash-home"} className='admin_side_options w-[100%] rounded-[20px] font-[600]    flex items-center p-3'>
                 <FaHome className='me-2 text-[20px]' /> Home
             </Link>
+
+            <Link to={"/dash-goals"} className='admin_side_options w-[100%] rounded-[20px] font-[600]   flex items-center p-3'>
+                <GoGoal className='me-2 text-[20px]' /> Goals
+            </Link>
+
+            <Link to={"/dash-gallery"} className='admin_side_options w-[100%] rounded-[20px] font-[600]    flex items-center p-3'>
+                <IoMdPhotos className='me-2 text-[20px]' /> Gallery
+            </Link>
+
+
 
             <Link to={"/dash-about"} className='admin_side_options w-[100%] rounded-[20px] font-[600]   flex items-center p-3'>
                 <FaInfo className='me-2 text-[20px]' /> About  Us
