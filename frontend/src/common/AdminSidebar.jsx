@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom'
 import { Logo } from './Logo'
 import { GoGoal } from 'react-icons/go'
 import { IoMdPhotos } from 'react-icons/io'
+import { IoNewspaperOutline } from 'react-icons/io5'
+import { FaQuestion } from 'react-icons/fa6'
 
 export function AdminSidebar() {
     return (
@@ -41,8 +43,17 @@ export function AdminSidebar() {
                 <FaInfo className='me-2 text-[20px]' /> About  Us
             </Link>
 
+            <Link to={"/dash-news"} className='admin_side_options w-[100%] rounded-[20px] font-[600]   flex items-center p-3'>
+                <IoNewspaperOutline className='me-2 text-[20px]' /> News & Events
+            </Link>
+
+
             <Link to={"/dash-contact"} className='admin_side_options w-[100%] rounded-[20px] font-[600]   flex items-center p-3'>
                 <FaPhoneAlt className='me-2 text-[20px]' /> Contact Us
+            </Link>
+
+            <Link to={"/dash-queries"} className='admin_side_options w-[100%] rounded-[20px] font-[600]   flex items-center p-3'>
+                <FaQuestion className='me-2 text-[20px]' /> Queries
             </Link>
 
 

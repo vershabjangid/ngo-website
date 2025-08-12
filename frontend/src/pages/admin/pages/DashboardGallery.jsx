@@ -8,6 +8,7 @@ import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import { apiurl, getCookie } from '../../../apiurl/Apiurl'
 import { toFormData } from 'axios'
+import { DashAddGalleryBanner } from './dashboard gallery/add/DashAddGalleryBanner'
 
 
 export function DashboardGallery() {
@@ -76,6 +77,7 @@ export function DashboardGallery() {
                                 <p>Dashboard / <span className='text-[#1385ff]'>Gallery</span></p>
                             </div>
                         </section>
+                        <DashAddGalleryBanner/>
 
                         <section className='w-[100%] py-[15px] rounded-[20px] my-[20px] bg-[white] px-3'>
                             <p className='font-[600] text-[grey]'> Home Add Gallery</p>
@@ -134,6 +136,8 @@ export function DashboardGallery() {
                                 </form>
                             </section>
                         </section>
+
+
                         <Toaster />
                     </section>
                 </section>

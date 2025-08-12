@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from 'react'
 import { AdminSidebar } from '../../../../../common/AdminSidebar'
 import { AdminHeader } from '../../../../../common/AdminHeader'
-import { FaHome } from 'react-icons/fa'
 import toast, { Toaster } from 'react-hot-toast'
 import { apiurl, getCookie } from '../../../../../apiurl/Apiurl'
 import { toFormData } from 'axios'
 import { useFormik } from 'formik'
+import { FaInfo } from 'react-icons/fa6'
 
-export function DashViewHomeAbout() {
+export function DashViewAboutBanner() {
     let [imgurl, setimgurl] = useState([])
     let [aboutdata, setaboutdata] = useState([])
+
     let viewdata = () => {
         try {
-            apiurl.get('/admin/view-home-about-banner')
+            apiurl.get('/admin/view-about-banner-section')
                 .then((res) => {
                     setaboutdata(res.data.viewdata)
                     setimgurl(res.data.imgurl)
@@ -30,7 +31,7 @@ export function DashViewHomeAbout() {
         viewdata()
     }, [])
 
-    // /update-home-banner
+    // /update-about-banner
 
     let [updatemodal, setupdatemodal] = useState(false)
     let [updatemodaldata, setupdatemodaldata] = useState(null)
@@ -38,9 +39,9 @@ export function DashViewHomeAbout() {
     let formik = useFormik({
         initialValues: {
             _id: "",
-            Home_Banner_Heading: "",
-            Home_Banner_Description: "",
-            Home_Banner_Image: ""
+            About_Banner_Heading: "",
+            About_Banner_Description: "",
+            About_Banner_Image: ""
         },
         onSubmit: () => {
             formik.values._id = updatemodaldata._id
@@ -54,7 +55,7 @@ export function DashViewHomeAbout() {
 
     let updatedata = (value) => {
         try {
-            apiurl.put('/admin/update-home-about-banner', toFormData(value), {
+            apiurl.put('/admin/update-about-banner-section', toFormData(value), {
                 headers: {
                     Authorization: getCookie('admintoken')
                 }
@@ -78,7 +79,6 @@ export function DashViewHomeAbout() {
         }
     }
 
-
     return (
         <>
             {
@@ -86,20 +86,17 @@ export function DashViewHomeAbout() {
                     <section className='w-[100%] h-[100vh] fixed bg-[#00000064] z-[9999] flex justify-center items-center'>
                         <section className='w-[450px] p-2 bg-[white] rounded-[20px] border-[1px]'>
                             <div className=' border-b-[1px] border-[black] pb-1'>
-                                <h3 className='text-[25px] font-[600]'>Home About Section</h3>
+                                <h3 className='text-[25px] font-[600]'>Update About Banner</h3>
                             </div>
                             <div>
                                 <form onSubmit={formik.handleSubmit}>
                                     <div className='w-[100%] flex justify-between my-[10px]'>
                                         <div className='w-[100%]'>
                                             <label htmlFor="homebannerheading">
-                                                Home About Heading
+                                                About Banner Heading
                                             </label>
 
-                                            <input maxLength={100} defaultValue={updatemodaldata.Home_About_Heading} id='homebannerheading' type="text" className='w-[100%] p-[10px] border-[1px] border-[grey] text-[grey] mt-1 rounded-[25px]' onChange={(e) => formik.setFieldValue('Home_About_Heading', e.target.value)} />
-                                            <div className='text-[#ff6780]'>
-                                                {formik.errors.Home_Banner_Heading}
-                                            </div>
+                                            <input maxLength={100} defaultValue={updatemodaldata.About_Banner_Heading} id='homebannerheading' type="text" className='w-[100%] p-[10px] border-[1px] border-[grey] text-[grey] mt-1 rounded-[25px]' onChange={(e) => formik.setFieldValue('About_Banner_Heading', e.target.value)} />
                                         </div>
 
                                     </div>
@@ -107,25 +104,19 @@ export function DashViewHomeAbout() {
                                     <div className='w-[100%] flex justify-between my-[10px]'>
                                         <div className='w-[100%]'>
                                             <label htmlFor="homebannerdescription">
-                                                Home About Description
+                                                About Banner Description
                                             </label>
-                                            <input id='homebannerdescription' defaultValue={updatemodaldata.Home_About_Description} maxLength={500} type="text" className='w-[100%] p-[10px] border-[1px] border-[grey] text-[grey] mt-1 rounded-[25px]' onChange={(e) => formik.setFieldValue('Home_About_Description', e.target.value)} />
-                                            <div className='text-[#ff6780]'>
-                                                {formik.errors.Home_Banner_Description}
-                                            </div>
+                                            <input maxLength={300} id='homebannerdescription' defaultValue={updatemodaldata.About_Banner_Description} type="text" className='w-[100%] p-[10px] border-[1px] border-[grey] text-[grey] mt-1 rounded-[25px]' onChange={(e) => formik.setFieldValue('About_Banner_Description', e.target.value)} />
                                         </div>
                                     </div>
 
                                     <div className='w-[100%] flex justify-between my-[10px]'>
                                         <div className='w-[100%]'>
                                             <label htmlFor="homeimage">
-                                                Home About Image
+                                                About Banner
                                             </label>
 
-                                            <input id='homeimage' type="file" className='w-[100%] p-2 border-[1px] border-[grey] text-[grey] mt-1 rounded-[25px]' onChange={(e) => formik.setFieldValue('Home_About_Image', e.target.files[0])} />
-                                            <div className='text-[#ff6780]'>
-                                                {formik.errors.Home_Banner_Image}
-                                            </div>
+                                            <input id='homeimage' type="file" className='w-[100%] p-2 border-[1px] border-[grey] text-[grey] mt-1 rounded-[25px]' onChange={(e) => formik.setFieldValue('About_Banner_Image', e.target.files[0])} />
                                         </div>
                                     </div>
 
@@ -155,18 +146,18 @@ export function DashViewHomeAbout() {
                     <section className='w-[100%] h-[calc(100vh-66px)] overflow-y-scroll p-2 px-[20px]'>
                         <section className='w-[100%] px-3'>
                             <div className='text-[25px] flex items-center'>
-                                <FaHome />
+                                <FaInfo />
                                 <h1 className='font-[600] ms-2'>
-                                    Home About Section
+                                    About Banner Section
                                 </h1>
                             </div>
                             <div className='font-[500] text-[15px]'>
-                                <p>Dashboard / <span className='text-[#000000]'>Home</span> / <span className='text-[#1385ff]'>  Home About Section</span></p>
+                                <p>Dashboard / <span className='text-[#000000]'>About Us</span> / <span className='text-[#1385ff]'> About Banner Section</span></p>
                             </div>
                         </section>
 
                         <section className='w-[100%] py-[15px] rounded-[20px] my-[20px] bg-[white] px-3'>
-                            <p className='font-[600] text-[grey] mb-[20px]'>  Home About Section</p>
+                            <p className='font-[600] text-[grey] mb-[20px]'> About Banner Section</p>
 
                             {
                                 aboutdata === null ?
@@ -175,36 +166,39 @@ export function DashViewHomeAbout() {
                                     </div>
 
                                     :
-                                    <section className='mb-[50px]'>
-                                        <section className=''>
-                                            <section className='home_about_us w-[100%] py-[20px] px-[20px] flex'>
-                                                <section className='w-[30%] flex justify-center items-center'>
-                                                    <section className='w-[300px]'>
-                                                        <img src={imgurl + aboutdata.Home_About_Image} alt="" className='w-[100%]' />
+                                    aboutdata.map((items, index) => {
+                                        return (
+                                            <section className='mb-[50px]'>
+                                                <section className=''>
+
+                                                    <section key={index} className='home_about_us w-[100%] py-[20px] px-[20px] flex'>
+                                                        <section className='w-[30%] flex justify-center items-center'>
+                                                            <section className='w-[300px]'>
+                                                                <img src={imgurl + items.About_Banner_Image} alt="" className='w-[100%]' />
+                                                            </section>
+                                                        </section>
+                                                        <section className='w-[70%] uppercase'>
+                                                            <h2 className='home_heading text-[30px] font-[700]'>
+                                                                {items.About_Banner_Heading}
+                                                            </h2>
+                                                            <p className='text-justify my-[10px] mb-[20px] leading-[25px]'>
+                                                                {items.About_Banner_Description}
+                                                            </p>
+                                                        </section>
                                                     </section>
+
+
+                                                    <div>
+                                                        <button className='bg-[#ff8913] px-[20px] py-[10px] rounded-[30px] text-[white]' onClick={() => setupdatemodal(true) || setupdatemodaldata(items)}>
+                                                            Update
+                                                        </button>
+                                                    </div>
                                                 </section>
-                                                <section className='w-[70%] uppercase'>
-                                                    <h2 className='home_heading text-[30px] font-[700]'>
-                                                        {aboutdata.Home_About_Heading}
-                                                    </h2>
-                                                    <p className='text-justify my-[10px] mb-[20px] leading-[25px]'>
-                                                        {aboutdata.Home_About_Description}
-                                                    </p>
-                                                </section>
+
                                             </section>
-
-                                            <div>
-                                                <button className='bg-[#ff8913] px-[20px] py-[10px] rounded-[30px] text-[white]' onClick={() => setupdatemodal(true) || setupdatemodaldata(aboutdata)}>
-                                                    Update
-                                                </button>
-                                            </div>
-                                        </section>
-
-
-                                    </section>
-
+                                        )
+                                    })
                             }
-
 
 
                         </section>

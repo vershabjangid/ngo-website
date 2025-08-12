@@ -1,8 +1,191 @@
 const fs = require('fs')
 let path = require('path')
 const homegalleryimagesdatamodel = require('../model/gallery/HomeGalleryModal')
+const gallerybannermodel = require('../model/gallery/AboutAddGallery')
 let finalpath = path.join(__dirname, '../../../uploads')
 let imageurl = "http://localhost:5500/uploads/"
+
+
+
+exports.addgallerybannercontroller = async (req, res) => {
+    try {
+        let viewdata = await gallerybannermodel.find()
+        if (viewdata.length !== 0) {
+            if (req.files[0] !== undefined) {
+                res.send({
+                    Status: 0,
+                    Message: "Data already exists"
+                })
+                fs.unlinkSync(`${finalpath}/${req.files[0].filename}`)
+            }
+            else {
+                res.send({
+                    Status: 0,
+                    Message: "Data already exists"
+                })
+            }
+        }
+        else {
+            let data = {
+                Gallery_Banner_Heading: req.body.Gallery_Banner_Heading,
+                Gallery_Banner_Description: req.body.Gallery_Banner_Description,
+                Gallery_Banner_Image: req.files[0].filename
+            }
+
+
+            let insertdata = await gallerybannermodel(data)
+            insertdata.save()
+                .then(() => {
+                    res.send({
+                        Status: 1,
+                        Message: "Data inserted successfully"
+                    })
+                })
+                .catch((error) => {
+                    if (req.files[0] !== undefined) {
+                        if (error.code === 11000) {
+                            res.send({
+                                Status: 0,
+                                Message: "Data already exists"
+                            })
+                        }
+                        else {
+                            res.send({
+                                Status: 0,
+                                Message: "Data missing"
+                            })
+                        }
+                        fs.unlinkSync(`${finalpath}/${req.files[0].filename}`)
+                    }
+                    else {
+                        if (error.code === 11000) {
+                            res.send({
+                                Status: 0,
+                                Message: "Data already exists"
+                            })
+                        }
+                        else {
+                            res.send({
+                                Status: 0,
+                                Message: "Data missing"
+                            })
+                        }
+                    }
+                })
+        }
+    }
+    catch (error) {
+        if (req.files[0] !== undefined) {
+            res.send({
+                Status: 0,
+                Message: "Something went wrong"
+            })
+            fs.unlinkSync(`${finalpath}/${req.files[0].filename}`)
+        }
+        else {
+            res.send({
+                Status: 0,
+                Message: "Something went wrong"
+            })
+        }
+
+    }
+}
+
+
+
+
+
+
+exports.viewgallerybannercontroller = async (req, res) => {
+    try {
+        let viewdata = await gallerybannermodel.find();
+        let imgurl = imageurl
+
+        res.send({ viewdata, imgurl })
+
+    }
+    catch (error) {
+        res.send({
+            Status: 0,
+            Message: "Something went wrong"
+        })
+    }
+}
+
+
+
+exports.updategallerybannercontroller = async (req, res) => {
+    try {
+        if (req.files[0] === undefined) {
+
+            let viewdata = await gallerybannermodel.findOne({ _id: req.body._id })
+            let data = {
+                _id: req.body._id,
+                Gallery_Banner_Heading: req.body.Gallery_Banner_Heading === null || req.body.Gallery_Banner_Heading === '' ? viewdata.Gallery_Banner_Heading : req.body.Gallery_Banner_Heading,
+                Gallery_Banner_Description: req.body.Gallery_Banner_Description === null || req.body.Gallery_Banner_Description === '' ? viewdata.Gallery_Banner_Description : req.body.Gallery_Banner_Description
+            }
+
+            let updatedata = await gallerybannermodel.updateOne({ _id: data._id }, {
+                Gallery_Banner_Heading: data.Gallery_Banner_Heading,
+                Gallery_Banner_Description: data.Gallery_Banner_Description
+            })
+            if (updatedata.modifiedCount >= 1) {
+                res.send({
+                    Status: 1,
+                    Message: "Data Updated Successfully"
+                })
+            }
+            else {
+                res.send({
+                    Status: 0,
+                    Message: "Data doesn't updated"
+                })
+            }
+        }
+        else {
+            let viewdata = await gallerybannermodel.findOne({ _id: req.body._id })
+            let data = {
+                _id: req.body._id,
+                Gallery_Banner_Heading: req.body.Gallery_Banner_Heading === null || req.body.Gallery_Banner_Heading === '' ? viewdata.Gallery_Banner_Heading : req.body.Gallery_Banner_Heading,
+                Gallery_Banner_Description: req.body.Gallery_Banner_Description === null || req.body.Gallery_Banner_Description === '' ? viewdata.Gallery_Banner_Description : req.body.Gallery_Banner_Description,
+                Gallery_Banner_Image: req.files[0].filename
+            }
+
+
+            let updatedata = await gallerybannermodel.updateOne({ _id: data._id }, {
+                Gallery_Banner_Heading: data.Gallery_Banner_Heading,
+                Gallery_Banner_Description: data.Gallery_Banner_Description,
+                Gallery_Banner_Image: data.Gallery_Banner_Image
+            })
+
+            if (updatedata.modifiedCount >= 1) {
+                fs.unlinkSync(`${finalpath}/${viewdata.Gallery_Banner_Image}`)
+                res.send({
+                    Status: 1,
+                    Message: "Data Updated Successfully"
+                })
+            }
+            else {
+                res.send({
+                    Status: 0,
+                    Message: "Data doesn't updated"
+                })
+            }
+        }
+    }
+    catch (error) {
+        res.send({
+            Status: 0,
+            Message: "Something went wrong"
+        })
+    }
+}
+
+
+
+
+
 
 exports.addhomegallery = async (req, res) => {
     try {

@@ -22,6 +22,21 @@ import { DashViewGallery } from './pages/admin/pages/dashboard gallery/view/Dash
 import { DashViewParagraphHeading } from './pages/admin/pages/dashboard goals/view/DashViewParagraphHeading';
 import { DashUpdateGoalsHeading } from './pages/admin/pages/dashboard goals/update/DashUpdateGoalsHeading';
 import { DashUpdateGoalsParagraph } from './pages/admin/pages/dashboard goals/update/DashUpdateGoalsParagraph';
+import { Gallery } from './pages/web/pages/Gallery';
+import { DashAbout } from './pages/admin/pages/DashAbout';
+import { DashViewAboutBanner } from './pages/admin/pages/dashboard about/view/DashViewAboutBanner';
+import { About } from './pages/web/pages/About';
+import { DashViewAboutParagraphSection } from './pages/admin/pages/dashboard about/view/DashViewAboutParagraphSection';
+import { DashViewAboutParagraph } from './pages/admin/pages/dashboard about/view/DashViewAboutParagraph';
+import { DashViewGalleryBanner } from './pages/admin/pages/dashboard gallery/view/DashViewGalleryBanner';
+import { DashNews } from './pages/admin/pages/DashNews';
+import { DashViewNewsBanner } from './pages/admin/pages/dashboard news/view/DashViewNewsBanner';
+import { NewsEvents } from './pages/web/pages/News&Events';
+import { DashViewNews } from './pages/admin/pages/dashboard news/view/DashViewNews';
+import { Contact } from './pages/web/pages/Contact';
+import { DashContact } from './pages/admin/pages/DashContact';
+import { DashViewContactBanner } from './pages/admin/pages/dashboard contact/view/DashViewContactBanner';
+import { DashQueries } from './pages/admin/pages/DashQueries';
 
 function App() {
   return (
@@ -29,6 +44,10 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Home />} />
+          <Route path='/about' element={<About />} />
+          <Route path='/gallery' element={<Gallery />} />
+          <Route path='/contact-us' element={<Contact />} />
+          <Route path='/news' element={<NewsEvents />} />
 
           <Route path='/admin-login' element={<AdminLogin />} />
           <Route element={<AdminPrivate />}>
@@ -54,6 +73,23 @@ function App() {
             {/* dash gallery  */}
             <Route path='/dash-gallery' element={<DashboardGallery />} />
             <Route path='/view-gallery' element={<DashViewGallery />} />
+            <Route path='/view-gallery-banner' element={<DashViewGalleryBanner />} />
+            {/* about  us */}
+            <Route path='/dash-about' element={<DashAbout />} />
+            <Route path='/view-about-banner' element={<DashViewAboutBanner />} />
+            <Route path='/view-about-paragraph' element={<DashViewAboutParagraphSection />} />
+            <Route path='/view-all-about-paragraph' element={<DashViewAboutParagraph />} />
+
+            {/* news */}
+            <Route path='/dash-news' element={<DashNews />} />
+            <Route path='/view-news-banner' element={<DashViewNewsBanner />} />
+            <Route path='/view-news' element={<DashViewNews />} />
+            <Route path='/view-all-about-paragraph' element={<DashViewAboutParagraph />} />
+
+            {/* contact */}
+            <Route path='/dash-contact' element={<DashContact />} />
+            <Route path='/view-contact-banner' element={<DashViewContactBanner />} />
+            <Route path='/dash-queries' element={<DashQueries />} />
 
           </Route>
         </Routes>

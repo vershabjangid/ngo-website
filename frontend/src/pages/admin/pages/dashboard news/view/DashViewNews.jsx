@@ -5,14 +5,14 @@ import toast, { Toaster } from 'react-hot-toast'
 import { apiurl, getCookie } from '../../../../../apiurl/Apiurl'
 import { toFormData } from 'axios'
 import { useFormik } from 'formik'
-import { IoMdPhotos } from 'react-icons/io'
+import { IoNewspaperOutline } from 'react-icons/io5'
 
-export function DashViewGallery() {
+export function DashViewNews() {
     let [imgurl, setimgurl] = useState([])
     let [homegoalscarddata, sethomegoalscarddata] = useState([])
     let viewdata = () => {
         try {
-            apiurl.get('/admin/view-gallery')
+            apiurl.get('/admin/view-news')
                 .then((res) => {
                     sethomegoalscarddata(res.data.viewdata)
                     setimgurl(res.data.imgurl)
@@ -37,9 +37,10 @@ export function DashViewGallery() {
     let formik = useFormik({
         initialValues: {
             _id: "",
-            Gallery_Event_Heading: "",
-            Gallery_Event_Description: "",
-            Gallery_Event_Image: ""
+            News_Heading: "",
+            News_Description: "",
+            News_Image: "",
+            News_Additional_Links: ""
         },
         onSubmit: () => {
             console.log(updatemodaldata)
@@ -59,7 +60,7 @@ export function DashViewGallery() {
 
     let updatedata = (value) => {
         try {
-            apiurl.put('/admin/update-gallery', toFormData(value), {
+            apiurl.put('/admin/update-news', toFormData(value), {
                 headers: {
                     Authorization: getCookie('admintoken')
                 }
@@ -85,7 +86,7 @@ export function DashViewGallery() {
 
     let deletedata = (value) => {
         try {
-            apiurl.delete('/admin/delete-gallery', {
+            apiurl.delete('/admin/delete-news', {
                 data: value,
                 headers: {
                     Authorization: getCookie('admintoken')
@@ -117,17 +118,17 @@ export function DashViewGallery() {
                     <section className='w-[100%] h-[100vh] fixed bg-[#00000064] z-[9999] flex justify-center items-center'>
                         <section className='w-[450px] p-2 bg-[white] rounded-[20px] border-[1px]'>
                             <div className=' border-b-[1px] border-[black] pb-1'>
-                                <h3 className='text-[25px] font-[600]'>Update Cards</h3>
+                                <h3 className='text-[25px] font-[600]'>Update News</h3>
                             </div>
                             <div>
                                 <form onSubmit={formik.handleSubmit}>
                                     <div className='w-[100%] flex justify-between my-[10px]'>
                                         <div className='w-[100%]'>
                                             <label htmlFor="homebannerheading">
-                                                Card Heading
+                                                News Heading
                                             </label>
 
-                                            <input maxLength={100} defaultValue={updatemodaldata.Gallery_Event_Heading} id='homebannerheading' type="text" className='w-[100%] p-[10px] border-[1px] border-[grey] text-[grey] mt-1 rounded-[25px]' onChange={(e) => formik.setFieldValue('Gallery_Event_Heading', e.target.value)} />
+                                            <input defaultValue={updatemodaldata.News_Heading} id='homebannerheading' type="text" className='w-[100%] p-[10px] border-[1px] border-[grey] text-[grey] mt-1 rounded-[25px]' onChange={(e) => formik.setFieldValue('News_Heading', e.target.value)} />
                                         </div>
 
                                     </div>
@@ -135,22 +136,29 @@ export function DashViewGallery() {
                                     <div className='w-[100%] flex justify-between my-[10px]'>
                                         <div className='w-[100%]'>
                                             <label htmlFor="homebannerdescription">
-                                                Card Description
+                                                News Description
                                             </label>
-                                            <input id='homebannerdescription' defaultValue={updatemodaldata.Gallery_Event_Description} maxLength={500} type="text" className='w-[100%] p-[10px] border-[1px] border-[grey] text-[grey] mt-1 rounded-[25px]' onChange={(e) => formik.setFieldValue('Gallery_Event_Description', e.target.value)} />
+                                            <input id='homebannerdescription' defaultValue={updatemodaldata.News_Description} type="text" className='w-[100%] p-[10px] border-[1px] border-[grey] text-[grey] mt-1 rounded-[25px]' onChange={(e) => formik.setFieldValue('News_Description', e.target.value)} />
+                                        </div>
+                                    </div>
+
+
+                                    <div className='w-[100%] flex justify-between my-[10px]'>
+                                        <div className='w-[100%]'>
+                                            <label htmlFor="homebannerdescription">
+                                                Additional Links
+                                            </label>
+                                            <input id='homebannerdescription' defaultValue={updatemodaldata.News_Additional_Links} type="url" className='w-[100%] p-[10px] border-[1px] border-[grey] text-[grey] mt-1 rounded-[25px]' onChange={(e) => formik.setFieldValue('News_Additional_Links', e.target.value)} />
                                         </div>
                                     </div>
 
                                     <div className='w-[100%] flex justify-between my-[10px]'>
                                         <div className='w-[100%]'>
                                             <label htmlFor="homeimage">
-                                                Card Icon
+                                                News Image
                                             </label>
 
-                                            <input id='homeimage' type="file" className='w-[100%] p-2 border-[1px] border-[grey] text-[grey] mt-1 rounded-[25px]' onChange={(e) => formik.setFieldValue('Gallery_Event_Image', e.target.files[0])} />
-                                            <div className='text-[#ff6780]'>
-                                                {formik.errors.Home_Goals_Card_Icon}
-                                            </div>
+                                            <input id='homeimage' type="file" className='w-[100%] p-2 border-[1px] border-[grey] text-[grey] mt-1 rounded-[25px]' onChange={(e) => formik.setFieldValue('News_Image', e.target.files[0])} />
                                         </div>
                                     </div>
 
@@ -205,18 +213,18 @@ export function DashViewGallery() {
                     <section className='w-[100%] h-[calc(100vh-66px)] overflow-y-scroll p-2 px-[20px]'>
                         <section className='w-[100%] px-3'>
                             <div className='text-[25px] flex items-center'>
-                                <IoMdPhotos />
+                                <IoNewspaperOutline />
                                 <h1 className='font-[600] ms-2'>
-                                    View Gallery
+                                    View News
                                 </h1>
                             </div>
                             <div className='font-[500] text-[15px]'>
-                                <p>Dashboard / <span className='text-[#000000]'>Home</span> / <span className='text-[#1385ff]'> View Gallery</span></p>
+                                <p>Dashboard / <span className='text-[#000000]'>Home</span> / <span className='text-[#1385ff]'> View News</span></p>
                             </div>
                         </section>
 
                         <section className='w-[100%] py-[15px] rounded-[20px] my-[20px] bg-[white] px-3'>
-                            <p className='font-[600] text-[grey] mb-[20px]'> View Gallery Section</p>
+                            <p className='font-[600] text-[grey] mb-[20px]'> View News Section</p>
 
                             <section className='w-[100%] my-[10px] flex justify-evenly flex-wrap py-2'>
                                 {
@@ -226,14 +234,22 @@ export function DashViewGallery() {
                                         </div> :
                                         homegoalscarddata.map((items, index) => {
                                             return (
-                                                <section key={index} className='w-[320px] border-[2px] border-[black] p-[10px] rounded-[20px] mb-[20px]'>
-                                                    <img src={imgurl + items.Gallery_Event_Image} alt="" className='m-auto' />
+                                                <section key={index} className='w-[49%] border-[2px] border-[black] p-[10px] rounded-[20px] mb-[20px]'>
+                                                    <img src={imgurl + items.News_Image} alt="" className='m-auto' />
                                                     <p className='my-[5px] text-[20px] font-[600]'>
-                                                        {items.Gallery_Event_Heading}
+                                                        {items.News_Heading}
                                                     </p>
-                                                    <p className='text-[13px]'>
-                                                        {items.Gallery_Event_Description}
+                                                    <p className='text-[13px] mb-[20px]'>
+                                                        {items.News_Description}
                                                     </p>
+
+                                                    {
+                                                        items.News_Additional_Links === "" ?
+                                                            null :
+                                                            <a href={items.News_Additional_Links} className='text-[13px] bg-[black] text-[white] p-3 rounded-[20px]'>
+                                                                Additional Links
+                                                            </a>
+                                                    }
 
                                                     <div className='pt-5'>
                                                         <button className='bg-[#ff8913] px-[20px] py-[10px] rounded-[30px] text-[white]' onClick={() => setupdatemodal(true) || setupdatemodaldata(items)}>

@@ -10,6 +10,7 @@ import { QuickLinks } from '../../../pages/web/pages/QuickLinks'
 import { Header } from '../../../common/Header'
 import { apiurl } from '../../../apiurl/Apiurl'
 import { FaXmark } from 'react-icons/fa6';
+import { FixedOptionHeader } from '../../../common/FixedOptionHeader';
 export function Home() {
 
     let [bannerdata, setbannerdata] = useState([])
@@ -103,8 +104,6 @@ export function Home() {
         viewdata()
     }, [])
 
-
-    console.log(homegoalscardheading)
     return (
         <>
             <section className='main m-auto w-[100%]'>
@@ -164,7 +163,8 @@ export function Home() {
                 {
                     bannerdata.length === 0 ?
                         null :
-                        <section>
+                        <section className=' relative'>
+                            <FixedOptionHeader />
                             <Swiper
                                 modules={[Autoplay]}
                                 autoplay={{
@@ -176,9 +176,9 @@ export function Home() {
                                 slidesPerView={1}
                             >
                                 {
-                                    bannerdata.map((items, index) => {
+                                    bannerdata.map((items, ind) => {
                                         return (
-                                            <>
+                                            <section key={ind}>
                                                 <SwiperSlide>
                                                     <div className='home_banner_slides w-[100%] h-[100vh] flex justify-center items-center' style={{ background: `url(${imgurl + items.Home_Banner_Image})`, backgroundSize: "cover" }}>
                                                         <section className='w-[100%] h-[100%] flex items-center bg-[#00000088] '>
@@ -192,7 +192,7 @@ export function Home() {
                                                         </section>
                                                     </div>
                                                 </SwiperSlide>
-                                            </>
+                                            </section>
                                         )
                                     })
                                 }
@@ -210,11 +210,11 @@ export function Home() {
                                     <img src={imgurl + aboutdata.Home_About_Image} alt="" className='w-[100%]' />
                                 </section>
                             </section>
-                            <section className='w-[70%] uppercase'>
-                                <h2 className='home_heading text-[30px] font-[700]'>
+                            <section className='w-[70%]'>
+                                <h2 className='home_heading text-[30px] font-[700] uppercase'>
                                     {aboutdata.Home_About_Heading}
                                 </h2>
-                                <p className='text-justify my-[10px] mb-[20px] leading-[25px]'>
+                                <p className='text-justify my-[10px] mb-[20px] leading-[25px] '>
                                     {aboutdata.Home_About_Description}
                                 </p>
 
@@ -245,7 +245,7 @@ export function Home() {
                                             null :
                                             homegoalscarddata.map((items, index) => {
                                                 return (
-                                                    <>
+                                                    <section key={index}>
                                                         <section className='w-[260px] border-[2px] border-[black] p-[10px] rounded-[20px] mb-[20px]' onClick={() => setmodel(true) || setmodalheading([items.Home_Goals_Heading, items._id])}>
                                                             <img src={imgurl + items.Home_Goals_Card_Icon} alt="" className='m-auto' />
                                                             <p className='my-[5px] text-[20px] font-[600]'>
@@ -255,7 +255,7 @@ export function Home() {
                                                                 {items.Home_Goals_Description}
                                                             </p>
                                                         </section>
-                                                    </>
+                                                    </section>
                                                 )
                                             })
                                     }
@@ -285,7 +285,7 @@ export function Home() {
                                             {
                                                 homemanagementprofiles.map((items, index) => {
                                                     return (
-                                                        <section className='w-[300px] border-[2px] border-[black] p-[10px] py-[20px] rounded-[20px] mb-[20px]'>
+                                                        <section key={index} className='w-[300px] border-[2px] border-[black] p-[10px] py-[20px] rounded-[20px] mb-[20px]'>
                                                             <section className='w-[150px] h-[150px] m-auto border-[1px] border-black rounded-[50%] overflow-hidden'>
                                                                 <img src={imgurl + items.Home_Management_Profile_Picture} alt="" className='m-auto w-[100%] h-[100%]' />
                                                             </section>
@@ -335,7 +335,7 @@ export function Home() {
                                                     {
                                                         homegalleryimagesdata.map((items, index) => {
                                                             return (
-                                                                <img src={imgurl + items.Gallery_Event_Image} alt="" className='w-[300px] h-[300px] rounded-[20px]' />
+                                                                <img key={index} src={imgurl + items.Gallery_Event_Image} alt="" className='w-[300px] h-[300px] rounded-[20px]' />
                                                             )
                                                         })
                                                     }
@@ -405,7 +405,7 @@ export function Home() {
                                     {
                                         homemanagementprofiledata.map((items, index) => {
                                             return (
-                                                <>
+                                                <section key={index}>
                                                     <section className='w-[300px] border-[2px] border-[black] p-[10px] py-[20px] rounded-[20px] mb-[20px]'>
                                                         <section className='w-[150px] h-[150px] m-auto border-[1px] border-black rounded-[50%] overflow-hidden'>
                                                             <img src={imgurl + items.Home_Team_Profile_Picture} alt="" className='m-auto w-[100%] h-[100%] rounded-[50%]' />
@@ -422,7 +422,7 @@ export function Home() {
                                                         </p>
                                                     </section>
 
-                                                </>
+                                                </section>
                                             )
                                         })
                                     }
@@ -450,7 +450,7 @@ export function Home() {
                                     {
                                         homegoalscarddata.map((items, index) => {
                                             return (
-                                                <section className='w-[260px] border-[2px] border-[black] p-[10px] rounded-[20px] mb-[20px]'>
+                                                <section key={index} className='w-[260px] border-[2px] border-[black] p-[10px] rounded-[20px] mb-[20px]'>
                                                     <img src={imgurl + items.Home_Goals_Card_Icon} alt="" className='m-auto' />
                                                     <p className='my-[5px] text-[20px] font-[600]'>
                                                         {items.Home_Goals_Heading}

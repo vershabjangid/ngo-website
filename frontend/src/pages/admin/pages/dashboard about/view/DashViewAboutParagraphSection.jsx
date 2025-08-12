@@ -5,16 +5,18 @@ import toast, { Toaster } from 'react-hot-toast'
 import { apiurl, getCookie } from '../../../../../apiurl/Apiurl'
 import { toFormData } from 'axios'
 import { useFormik } from 'formik'
-import { IoMdPhotos } from 'react-icons/io'
+import { FaInfo } from 'react-icons/fa6'
 
-export function DashViewGallery() {
+
+export function DashViewAboutParagraphSection() {
     let [imgurl, setimgurl] = useState([])
-    let [homegoalscarddata, sethomegoalscarddata] = useState([])
+    let [aboutdata, setaboutdata] = useState([])
+
     let viewdata = () => {
         try {
-            apiurl.get('/admin/view-gallery')
+            apiurl.get('/admin/view-about-paragraph-section')
                 .then((res) => {
-                    sethomegoalscarddata(res.data.viewdata)
+                    setaboutdata(res.data.viewdata)
                     setimgurl(res.data.imgurl)
                 })
                 .catch((error) => {
@@ -30,19 +32,20 @@ export function DashViewGallery() {
         viewdata()
     }, [])
 
-    // /update-home-banner
+    // /update-about-banner
 
     let [updatemodal, setupdatemodal] = useState(false)
-    let [updatemodaldata, setupdatemodaldata] = useState([])
+    let [updatemodaldata, setupdatemodaldata] = useState(null)
+
     let formik = useFormik({
         initialValues: {
             _id: "",
-            Gallery_Event_Heading: "",
-            Gallery_Event_Description: "",
-            Gallery_Event_Image: ""
+            About_Heading: "",
+            About_Description: "",
+            About_Image: "",
+
         },
         onSubmit: () => {
-            console.log(updatemodaldata)
             formik.values._id = updatemodaldata._id
             updatedata(formik.values)
         }
@@ -51,15 +54,10 @@ export function DashViewGallery() {
 
     let notificationerror = (error) => toast.error(error)
     let notificationsuccess = (success) => toast.success(success)
-    // /update-home-banner
-
-    let [deletemodal, setdeletemodal] = useState(false)
-    let [deletemodaldata, setdeletemodaldata] = useState([])
-
 
     let updatedata = (value) => {
         try {
-            apiurl.put('/admin/update-gallery', toFormData(value), {
+            apiurl.put('/admin/update-about-paragraph-section', toFormData(value), {
                 headers: {
                     Authorization: getCookie('admintoken')
                 }
@@ -83,9 +81,14 @@ export function DashViewGallery() {
         }
     }
 
+
+    let [deletemodal, setdeletemodal] = useState(false)
+    let [deletemodaldata, setdeletemodaldata] = useState([])
+
+
     let deletedata = (value) => {
         try {
-            apiurl.delete('/admin/delete-gallery', {
+            apiurl.delete('/admin/delete-about-paragraph-section', {
                 data: value,
                 headers: {
                     Authorization: getCookie('admintoken')
@@ -109,7 +112,6 @@ export function DashViewGallery() {
             console.log(error)
         }
     }
-
     return (
         <>
             {
@@ -117,17 +119,17 @@ export function DashViewGallery() {
                     <section className='w-[100%] h-[100vh] fixed bg-[#00000064] z-[9999] flex justify-center items-center'>
                         <section className='w-[450px] p-2 bg-[white] rounded-[20px] border-[1px]'>
                             <div className=' border-b-[1px] border-[black] pb-1'>
-                                <h3 className='text-[25px] font-[600]'>Update Cards</h3>
+                                <h3 className='text-[25px] font-[600]'>Update About Paragraph</h3>
                             </div>
                             <div>
                                 <form onSubmit={formik.handleSubmit}>
                                     <div className='w-[100%] flex justify-between my-[10px]'>
                                         <div className='w-[100%]'>
                                             <label htmlFor="homebannerheading">
-                                                Card Heading
+                                               About Paragraph Heading
                                             </label>
 
-                                            <input maxLength={100} defaultValue={updatemodaldata.Gallery_Event_Heading} id='homebannerheading' type="text" className='w-[100%] p-[10px] border-[1px] border-[grey] text-[grey] mt-1 rounded-[25px]' onChange={(e) => formik.setFieldValue('Gallery_Event_Heading', e.target.value)} />
+                                            <input maxLength={100} defaultValue={updatemodaldata.About_Heading} id='homebannerheading' type="text" className='w-[100%] p-[10px] border-[1px] border-[grey] text-[grey] mt-1 rounded-[25px]' onChange={(e) => formik.setFieldValue('About_Heading', e.target.value)} />
                                         </div>
 
                                     </div>
@@ -135,22 +137,19 @@ export function DashViewGallery() {
                                     <div className='w-[100%] flex justify-between my-[10px]'>
                                         <div className='w-[100%]'>
                                             <label htmlFor="homebannerdescription">
-                                                Card Description
+                                                About Paragraph Description
                                             </label>
-                                            <input id='homebannerdescription' defaultValue={updatemodaldata.Gallery_Event_Description} maxLength={500} type="text" className='w-[100%] p-[10px] border-[1px] border-[grey] text-[grey] mt-1 rounded-[25px]' onChange={(e) => formik.setFieldValue('Gallery_Event_Description', e.target.value)} />
+                                            <input maxLength={300} id='homebannerdescription' defaultValue={updatemodaldata.About_Description} type="text" className='w-[100%] p-[10px] border-[1px] border-[grey] text-[grey] mt-1 rounded-[25px]' onChange={(e) => formik.setFieldValue('About_Description', e.target.value)} />
                                         </div>
                                     </div>
 
                                     <div className='w-[100%] flex justify-between my-[10px]'>
                                         <div className='w-[100%]'>
                                             <label htmlFor="homeimage">
-                                                Card Icon
+                                                About Image
                                             </label>
 
-                                            <input id='homeimage' type="file" className='w-[100%] p-2 border-[1px] border-[grey] text-[grey] mt-1 rounded-[25px]' onChange={(e) => formik.setFieldValue('Gallery_Event_Image', e.target.files[0])} />
-                                            <div className='text-[#ff6780]'>
-                                                {formik.errors.Home_Goals_Card_Icon}
-                                            </div>
+                                            <input id='homeimage' type="file" className='w-[100%] p-2 border-[1px] border-[grey] text-[grey] mt-1 rounded-[25px]' onChange={(e) => formik.setFieldValue('About_Image', e.target.files[0])} />
                                         </div>
                                     </div>
 
@@ -170,6 +169,7 @@ export function DashViewGallery() {
                     :
                     null
             }
+
 
             {
                 deletemodal ?
@@ -197,6 +197,7 @@ export function DashViewGallery() {
                     :
                     null
             }
+
             <section className='w-[100%] h-[100vh]  bg-[#d7d7d76b] flex'>
                 <AdminSidebar />
                 <section className='w-[100%] h-[100%]'>
@@ -205,37 +206,49 @@ export function DashViewGallery() {
                     <section className='w-[100%] h-[calc(100vh-66px)] overflow-y-scroll p-2 px-[20px]'>
                         <section className='w-[100%] px-3'>
                             <div className='text-[25px] flex items-center'>
-                                <IoMdPhotos />
+                                <FaInfo />
                                 <h1 className='font-[600] ms-2'>
-                                    View Gallery
+                                    About Banner Section
                                 </h1>
                             </div>
                             <div className='font-[500] text-[15px]'>
-                                <p>Dashboard / <span className='text-[#000000]'>Home</span> / <span className='text-[#1385ff]'> View Gallery</span></p>
+                                <p>Dashboard / <span className='text-[#000000]'>About Us</span> / <span className='text-[#1385ff]'> About Banner Section</span></p>
                             </div>
                         </section>
 
                         <section className='w-[100%] py-[15px] rounded-[20px] my-[20px] bg-[white] px-3'>
-                            <p className='font-[600] text-[grey] mb-[20px]'> View Gallery Section</p>
+                            <p className='font-[600] text-[grey] mb-[20px]'> About Paragraph Section</p>
 
-                            <section className='w-[100%] my-[10px] flex justify-evenly flex-wrap py-2'>
-                                {
-                                    homegoalscarddata.length === 0 ?
-                                        <div className='text-center font-[600] text-[grey]'>
-                                            No Data Found
-                                        </div> :
-                                        homegoalscarddata.map((items, index) => {
-                                            return (
-                                                <section key={index} className='w-[320px] border-[2px] border-[black] p-[10px] rounded-[20px] mb-[20px]'>
-                                                    <img src={imgurl + items.Gallery_Event_Image} alt="" className='m-auto' />
-                                                    <p className='my-[5px] text-[20px] font-[600]'>
-                                                        {items.Gallery_Event_Heading}
-                                                    </p>
-                                                    <p className='text-[13px]'>
-                                                        {items.Gallery_Event_Description}
-                                                    </p>
+                            {
+                                aboutdata.length === 0 ?
+                                    <div className='text-center font-[600] text-[grey]'>
+                                        No Data Found
+                                    </div>
 
-                                                    <div className='pt-5'>
+                                    :
+                                    aboutdata.map((items, index) => {
+                                        return (
+                                            <section className='mb-[50px]' key={index}>
+                                                <section className=''>
+
+                                                    <section key={index} className='home_about_us w-[100%] py-[20px] px-[20px] flex'>
+                                                        <section className='w-[30%] flex justify-center items-center'>
+                                                            <section className='w-[300px]'>
+                                                                <img src={imgurl + items.About_Image} alt="" className='w-[100%]' />
+                                                            </section>
+                                                        </section>
+                                                        <section className='w-[70%] uppercase'>
+                                                            <h2 className='home_heading text-[30px] font-[700]'>
+                                                                {items.About_Heading}
+                                                            </h2>
+                                                            <p className='text-justify my-[10px] mb-[20px] leading-[25px]'>
+                                                                {items.About_Description}
+                                                            </p>
+                                                        </section>
+                                                    </section>
+
+
+                                                    <div>
                                                         <button className='bg-[#ff8913] px-[20px] py-[10px] rounded-[30px] text-[white]' onClick={() => setupdatemodal(true) || setupdatemodaldata(items)}>
                                                             Update
                                                         </button>
@@ -245,13 +258,11 @@ export function DashViewGallery() {
                                                         </button>
                                                     </div>
                                                 </section>
-                                            )
-                                        })
-                                }
 
-                            </section>
-
-
+                                            </section>
+                                        )
+                                    })
+                            }
                         </section>
                     </section>
                 </section>

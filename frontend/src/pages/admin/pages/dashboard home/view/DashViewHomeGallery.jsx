@@ -89,13 +89,10 @@ export function DashViewHomeGallery() {
                                     <div className='w-[100%] flex justify-between my-[10px]'>
                                         <div className='w-[100%]'>
                                             <label htmlFor="homebannerheading">
-                                                Home About Heading
+                                                Home Gallery Heading
                                             </label>
 
                                             <input maxLength={100} defaultValue={updatemodaldata.Home_Gallery_Heading} id='homebannerheading' type="text" className='w-[100%] p-[10px] border-[1px] border-[grey] text-[grey] mt-1 rounded-[25px]' onChange={(e) => formik.setFieldValue('Home_Gallery_Heading', e.target.value)} />
-                                            <div className='text-[#ff6780]'>
-                                                {formik.errors.Home_Gallery_Heading}
-                                            </div>
                                         </div>
 
                                     </div>
@@ -103,12 +100,9 @@ export function DashViewHomeGallery() {
                                     <div className='w-[100%] flex justify-between my-[10px]'>
                                         <div className='w-[100%]'>
                                             <label htmlFor="homebannerdescription">
-                                                Home About Description
+                                                Home Gallery Description
                                             </label>
                                             <input id='homebannerdescription' defaultValue={updatemodaldata.Home_Gallery_Description} maxLength={500} type="text" className='w-[100%] p-[10px] border-[1px] border-[grey] text-[grey] mt-1 rounded-[25px]' onChange={(e) => formik.setFieldValue('Home_Gallery_Description', e.target.value)} />
-                                            <div className='text-[#ff6780]'>
-                                                {formik.errors.Home_Gallery_Description}
-                                            </div>
                                         </div>
                                     </div>
 
