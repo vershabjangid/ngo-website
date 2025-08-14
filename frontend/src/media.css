@@ -39,6 +39,12 @@
     }
 }
 
+@media screen and (max-width:1032px) {
+    footer>section {
+        margin: 0px auto 50px auto;
+    }
+}
+
 @media screen and (max-width:960px) {
     .gallery_card_section {
         flex-wrap: wrap;
@@ -102,11 +108,11 @@
         display: none;
     }
 
-    .contact_section{
+    .contact_section {
         flex-direction: column;
     }
 
-     .contact_section>section{
+    .contact_section>section {
         width: 100%;
     }
 }
@@ -197,6 +203,10 @@
 
     .home_sub_heading {
         font-size: 15px;
+    }
+
+    footer>section{
+        width: 100%;
     }
 }
 

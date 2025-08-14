@@ -178,21 +178,20 @@ export function Home() {
                                 {
                                     bannerdata.map((items, ind) => {
                                         return (
-                                            <section key={ind}>
-                                                <SwiperSlide>
-                                                    <div className='home_banner_slides w-[100%] h-[100vh] flex justify-center items-center' style={{ background: `url(${imgurl + items.Home_Banner_Image})`, backgroundSize: "cover" }}>
-                                                        <section className='w-[100%] h-[100%] flex items-center bg-[#00000088] '>
-                                                            <section className='w-[100%] text-center p-3'>.
-                                                                <section className='w-[120px] m-auto'>
-                                                                    <Logo />
-                                                                </section>
-                                                                <p className='text-white text-[30px] font-[700]'>{items.Home_Banner_Heading}</p>
-                                                                <p className='text-white text-[18px]'>{items.Home_Banner_Description}</p>
+                                            <SwiperSlide key={ind}>
+                                                <div className='home_banner_slides w-[100%] h-[100vh] flex justify-center items-center' style={{ background: `url(${imgurl + items.Home_Banner_Image})`, backgroundSize: "cover" }}>
+                                                    <section className='w-[100%] h-[100%] flex items-center bg-[#00000088] '>
+                                                        <section className='w-[100%] text-center p-3'>.
+                                                            <section className='w-[120px] m-auto'>
+                                                                <Logo />
                                                             </section>
+                                                            <p className='text-white text-[30px] font-[700]'>{items.Home_Banner_Heading}</p>
+                                                            <p className='text-white text-[18px]'>{items.Home_Banner_Description}</p>
                                                         </section>
-                                                    </div>
-                                                </SwiperSlide>
-                                            </section>
+                                                    </section>
+                                                </div>
+                                            </SwiperSlide>
+
                                         )
                                     })
                                 }
