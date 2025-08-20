@@ -231,10 +231,19 @@ exports.updatehomegoalscard = async (req, res) => {
         }
     }
     catch (error) {
-        res.send({
-            Status: 0,
-            Message: "Something went wrong"
-        })
+        if (req.files[0] === undefined) {
+            res.send({
+                Status: 0,
+                Message: "Something went wrong"
+            })
+        }
+        else {
+            fs.unlinkSync(`${finalpath}/${req.files[0].filename}`)
+            res.send({
+                Status: 0,
+                Message: "Something went wrong"
+            })
+        }
     }
 }
 

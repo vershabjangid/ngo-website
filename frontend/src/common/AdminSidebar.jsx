@@ -1,12 +1,13 @@
 import React from 'react'
 import { FaHome, FaInfo, FaPhoneAlt } from 'react-icons/fa'
-import { LuLayoutDashboard } from 'react-icons/lu'
+import { LuClipboardList } from 'react-icons/lu'
 import { Link } from 'react-router-dom'
 import { Logo } from './Logo'
 import { GoGoal } from 'react-icons/go'
 import { IoMdPhotos } from 'react-icons/io'
 import { IoNewspaperOutline } from 'react-icons/io5'
 import { FaQuestion } from 'react-icons/fa6'
+import { MdOutlinePrivacyTip } from 'react-icons/md'
 
 export function AdminSidebar() {
     return (
@@ -21,9 +22,9 @@ export function AdminSidebar() {
                     <p className='text-[8px]'>INDIAN CHAMBER OF COMMERCE & INDUSTRY</p>
                 </div>
             </div>
-            <Link to={"/dashboard"} className='admin_side_options w-[100%] rounded-[20px] font-[600]  flex items-center p-3'>
+            {/* <Link to={"/dashboard"} className='admin_side_options w-[100%] rounded-[20px] font-[600]  flex items-center p-3'>
                 <LuLayoutDashboard className='me-2 text-[20px]' /> Dashboard
-            </Link>
+            </Link> */}
 
             <Link to={"/dash-home"} className='admin_side_options w-[100%] rounded-[20px] font-[600]    flex items-center p-3'>
                 <FaHome className='me-2 text-[20px]' /> Home
@@ -56,10 +57,19 @@ export function AdminSidebar() {
                 <FaQuestion className='me-2 text-[20px]' /> Queries
             </Link>
 
-
-            <Link className='admin_side_options w-[100%]  flex items-center rounded-[20px] font-[600]   p-3'>
-                <FaHome className='me-2 text-[20px]' /> Home
+            <Link to={"/dash-terms"} className='admin_side_options w-[100%] rounded-[20px] font-[600]   flex items-center p-3'>
+                <LuClipboardList className='me-2 text-[20px]' /> Terms & Conditions
             </Link>
+
+
+            <Link to={"/dash-privacy"} className='admin_side_options w-[100%]  flex items-center rounded-[20px] font-[600]   p-3'>
+                <MdOutlinePrivacyTip className='me-2 text-[20px]' /> Privacy Policy
+            </Link>
+
+
+            {/* <Link className='admin_side_options w-[100%]  flex items-center rounded-[20px] font-[600]   p-3'>
+                <FaHome className='me-2 text-[20px]' /> Home
+            </Link> */}
 
         </section>
     )

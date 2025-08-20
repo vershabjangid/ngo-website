@@ -1,5 +1,5 @@
 let express = require('express')
-const { adminlogin } = require('../../../admin/controller/AuthController')
+const { adminlogin, checkadminsession, adminlogout } = require('../../../admin/controller/AuthController')
 let adminroutes = express.Router()
 let multer = require('multer')
 let path = require('path')
@@ -11,6 +11,8 @@ const { addhomegallery, viewhomegallery, deletehomegallery, updatehomegallery, a
 const { addaboutscontroller, addaboutbannercontroller, viewaboutbannercontroller, updateaboutbannercontroller, addaboutparagraphsection, viewaboutparagraphsection, updateaboutparagraphsection, deleteaboutparagraphsection, addaboutextraparagraphcontroller, viewaboutextraparagraphcontroller, updateaboutextraparagraphcontroller, deleteaboutextraparagraphcontroller } = require('../../../admin/controller/AboutController')
 const { addnewsbannercontroller, viewnewsbannercontroller, updatenewsbannercontroller, addnewscontroller, viewnewscontroller, updatenewscontroller, deletenewscontroller } = require('../../../admin/controller/NewsController')
 const { addcontactbannercontroller, viewcontactbannercontroller, updatecontactbannercontroller, AddQueriescontroller, ViewQueriescontroller, deletequeries } = require('../../../admin/controller/ContactController')
+const { addtermsbannercontroller, updatetermsbannercontroller, viewtermsbannercontroller, addtermsparagraphsection, viewtermsparagraphsection, updatetermsparagraphsection, deletetermsparagraphsection, addtermsextraparagraphcontroller, viewtermsextraparagraphcontroller, updatetermsextraparagraphcontroller, deletetermsextraparagraphcontroller } = require('../../../admin/controller/TermsController')
+const { addprivacybannercontroller, viewprivacybannercontroller, updateprivacybannercontroller, addprivacyparagraphsection, viewprivacyparagraphsection, updateprivacyparagraphsection, deleteprivacyparagraphsection, addprivacyextraparagraphcontroller, viewprivacyextraparagraphcontroller, updateprivacyextraparagraphcontroller, deleteprivacyextraparagraphcontroller } = require('../../../admin/controller/PrivacyController')
 dotenv.config({ debug: false, quiet: true });
 
 let storage = multer.diskStorage({
@@ -33,7 +35,7 @@ let storage = multer.diskStorage({
 })
 
 
-const upload = multer({ storage: storage }).any(['Home_Banner_Image', 'Home_About_Image', 'Home_Management_Profile_Picture', 'Home_Team_Profile_Picture', 'Home_Goals_Card_Icon', 'About_Image', 'About_Banner_Image', 'Gallery_Banner_Image', 'News_Banner_Image', 'Contact_Banner_Image'])
+const upload = multer({ storage: storage }).any(['Home_Banner_Image', 'Home_About_Image', 'Home_Management_Profile_Picture', 'Home_Team_Profile_Picture', 'Home_Goals_Card_Icon', 'About_Image', 'About_Banner_Image', 'Gallery_Banner_Image', 'News_Banner_Image', 'Contact_Banner_Image', 'Terms_Image', 'Privacy_Image'])
 
 
 let verifytoken = (req, res, next) => {
@@ -73,6 +75,8 @@ let adminsession = (req, res, next) => {
 };
 
 adminroutes.post('/admin-login', adminlogin)
+adminroutes.post('/check-admin-session', checkadminsession)
+adminroutes.post('/admin-logout', verifytoken, adminsession, upload, adminlogout)
 
 
 adminroutes.post('/add-home-banner', verifytoken, adminsession, upload, addhomebanner)
@@ -195,5 +199,47 @@ adminroutes.put('/update-contact-banner', verifytoken, adminsession, upload, upd
 adminroutes.post('/send-query', upload, AddQueriescontroller)
 adminroutes.get('/view-query', verifytoken, adminsession, upload, ViewQueriescontroller)
 adminroutes.delete('/delete-query', verifytoken, adminsession, upload, deletequeries)
+
+// terms & conditions 
+adminroutes.post('/add-terms-banner-section', verifytoken, adminsession, upload, addtermsbannercontroller)
+adminroutes.get('/view-terms-banner-section', viewtermsbannercontroller)
+adminroutes.put('/update-terms-banner-section', verifytoken, adminsession, upload, updatetermsbannercontroller)
+
+
+
+adminroutes.post('/add-terms-paragraph-section', verifytoken, adminsession, upload, addtermsparagraphsection)
+adminroutes.get('/view-terms-paragraph-section', viewtermsparagraphsection)
+adminroutes.put('/update-terms-paragraph-section', verifytoken, adminsession, upload, updatetermsparagraphsection)
+adminroutes.delete('/delete-terms-paragraph-section', verifytoken, adminsession, upload, deletetermsparagraphsection)
+
+
+
+adminroutes.post('/add-terms-extra-paragraph', verifytoken, adminsession, upload, addtermsextraparagraphcontroller)
+adminroutes.get('/view-terms-extra-paragraph', viewtermsextraparagraphcontroller)
+adminroutes.put('/update-terms-extra-paragraph', verifytoken, adminsession, upload, updatetermsextraparagraphcontroller)
+adminroutes.delete('/delete-terms-extra-paragraph', verifytoken, adminsession, upload, deletetermsextraparagraphcontroller)
+
+
+
+// privacy policy 
+
+adminroutes.post('/add-privacy-banner-section', verifytoken, adminsession, upload, addprivacybannercontroller)
+adminroutes.get('/view-privacy-banner-section', viewprivacybannercontroller)
+adminroutes.put('/update-privacy-banner-section', verifytoken, adminsession, upload, updateprivacybannercontroller)
+
+
+
+adminroutes.post('/add-privacy-paragraph-section', verifytoken, adminsession, upload, addprivacyparagraphsection)
+adminroutes.get('/view-privacy-paragraph-section', viewprivacyparagraphsection)
+adminroutes.put('/update-privacy-paragraph-section', verifytoken, adminsession, upload, updateprivacyparagraphsection)
+adminroutes.delete('/delete-privacy-paragraph-section', verifytoken, adminsession, upload, deleteprivacyparagraphsection)
+
+
+
+adminroutes.post('/add-privacy-extra-paragraph', verifytoken, adminsession, upload, addprivacyextraparagraphcontroller)
+adminroutes.get('/view-privacy-extra-paragraph', viewprivacyextraparagraphcontroller)
+adminroutes.put('/update-privacy-extra-paragraph', verifytoken, adminsession, upload, updateprivacyextraparagraphcontroller)
+adminroutes.delete('/delete-privacy-extra-paragraph', verifytoken, adminsession, upload, deleteprivacyextraparagraphcontroller)
+
 
 module.exports = adminroutes

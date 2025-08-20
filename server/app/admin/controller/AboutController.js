@@ -175,10 +175,19 @@ exports.updateaboutbannercontroller = async (req, res) => {
         }
     }
     catch (error) {
-        res.send({
-            Status: 0,
-            Message: "Something went wrong"
-        })
+        if (req.files[0] === undefined) {
+            res.send({
+                Status: 0,
+                Message: "Something went wrong"
+            })
+        }
+        else {
+            fs.unlinkSync(`${finalpath}/${req.files[0].filename}`)
+            res.send({
+                Status: 0,
+                Message: "Something went wrong"
+            })
+        }
     }
 }
 
@@ -353,10 +362,19 @@ exports.updateaboutparagraphsection = async (req, res) => {
         }
     }
     catch (error) {
-        res.send({
-            Status: 0,
-            Message: "Something went wrong"
-        })
+        if (req.files[0] === undefined) {
+            res.send({
+                Status: 0,
+                Message: "Something went wrong"
+            })
+        }
+        else {
+            fs.unlinkSync(`${finalpath}/${req.files[0].filename}`)
+            res.send({
+                Status: 0,
+                Message: "Something went wrong"
+            })
+        }
     }
 }
 
@@ -371,7 +389,7 @@ exports.deleteaboutparagraphsection = async (req, res) => {
     try {
         let data = {
             _id: req.body._id,
-            About_Image: req.body.Gallery_Event_Image
+            About_Image: req.body.About_Image
         }
 
         let viewdata = await aboutparagraphmodel.findOne({ _id: req.body._id })

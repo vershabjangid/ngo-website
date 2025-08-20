@@ -5,6 +5,7 @@
 
 body {
     font-family: "Montserrat", "system-ui", sans-serif;
+    scroll-behavior: smooth !important;
 }
 
 .home_banner {
@@ -34,4 +35,27 @@ input[type="file"]::-webkit-file-upload-button {
     color: white;
     padding: 5px 15px;
     border-radius: 50px;
+}
+
+
+.login_banner {
+    background-image: url("../src/images/Frame\ 46\ \(1\).svg");
+    background-size: cover;
+}
+
+.login_profile_banner {
+    background-image: url("../src/images/Frame\ 46\ \(1\).svg");
+    background-size: cover;
+}
+
+.login_right::-webkit-scrollbar {
+    display: none;
+}
+
+input[type=number]::-webkit-inner-spin-button {
+    display: none;
+}
+
+.desktop_megamenu::-webkit-scrollbar{
+    display: none;
 }

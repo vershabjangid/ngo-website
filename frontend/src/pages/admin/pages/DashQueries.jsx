@@ -18,7 +18,12 @@ export function DashQueries() {
                 }
             })
                 .then((res) => {
-                    sethomegoalscarddata(res.data.viewdata)
+                    if (res.data.Status === 0) {
+                        sethomegoalscarddata([])
+                    }
+                    else {
+                        sethomegoalscarddata(res.data.viewdata)
+                    }
                 })
                 .catch((error) => {
                     console.log(error)
@@ -112,7 +117,7 @@ export function DashQueries() {
                             <p className='font-[600] text-[grey] mb-[20px]'> View Queries</p>
 
                             {
-                                homegoalscarddata.length === 0 ?
+                                homegoalscarddata.length === undefined || homegoalscarddata.length === 0 ?
                                     <div className='text-center font-[600] text-[grey]'>No Data Found</div>
                                     :
                                     <table className='w-[100%] bg-[white] rounded-[10px]'>

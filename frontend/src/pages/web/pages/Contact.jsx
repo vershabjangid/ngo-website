@@ -8,6 +8,7 @@ import { ContactInfo } from '../../../common/ContactInfo'
 import toast, { Toaster } from 'react-hot-toast'
 import * as Yup from 'yup'
 import { useFormik } from 'formik'
+import { QuickLinks } from './QuickLinks'
 export function Contact() {
     let [contactbannerdata, setcontactbannerdata] = useState([])
     let [imageurl, setimageurl] = useState([])
@@ -129,6 +130,8 @@ export function Contact() {
                             )
                         })
                 }
+
+                 <QuickLinks />
 
                 <section className='w-[100%] py-[20px] px-[10px]'>
                     <section className='contact_section w-[100%] flex justify-between'>

@@ -180,11 +180,11 @@ exports.updatecontactbannercontroller = async (req, res) => {
             })
         }
         else {
+            fs.unlinkSync(`${finalpath}/${req.files[0].filename}`)
             res.send({
                 Status: 0,
                 Message: "Something went wrong"
             })
-            fs.unlinkSync(`${finalpath}/${viewdata.Contact_Banner_Image}`)
         }
     }
 }

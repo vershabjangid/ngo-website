@@ -4,6 +4,7 @@ import { Footer } from '../../../common/Footer'
 import { apiurl } from '../../../apiurl/Apiurl'
 import { Logo } from '../../../common/Logo'
 import { FixedOptionHeader } from '../../../common/FixedOptionHeader'
+import { QuickLinks } from './QuickLinks'
 
 export function NewsEvents() {
     let [newsbannerdata, setnewsbannerdata] = useState([])
@@ -147,6 +148,7 @@ export function NewsEvents() {
                                 )
                             })
                     }
+                     <QuickLinks />
                 </section>
                 <Footer />
             </section >

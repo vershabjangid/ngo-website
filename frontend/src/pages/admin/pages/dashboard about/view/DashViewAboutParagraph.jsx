@@ -228,11 +228,11 @@ export function DashViewAboutParagraph() {
                             <div className='text-[25px] flex items-center'>
                                 <FaInfo />
                                 <h1 className='font-[600] ms-2'>
-                                    About Banner Section
+                                    About Us
                                 </h1>
                             </div>
                             <div className='font-[500] text-[15px]'>
-                                <p>Dashboard / <span className='text-[#000000]'>About Us</span> / <span className='text-[#1385ff]'> About Banner Section</span></p>
+                                <p>Dashboard / <span className='text-[#000000]'>About Us</span> / <span className='text-[#1385ff]'> About All Paragraph Section</span></p>
                             </div>
                         </section>
 

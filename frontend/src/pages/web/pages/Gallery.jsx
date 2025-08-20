@@ -5,6 +5,7 @@ import { apiurl } from '../../../apiurl/Apiurl'
 import 'swiper/css';
 import { FixedOptionHeader } from '../../../common/FixedOptionHeader';
 import { Logo } from '../../../common/Logo';
+import { QuickLinks } from './QuickLinks';
 
 export function Gallery() {
     let [gallerybannerdata, sethomegallerybannerdata] = useState([])
@@ -152,6 +153,7 @@ export function Gallery() {
                                                                                 </div>
                                                                             </div>
                                                                     }
+                                                                     <QuickLinks />
                                                                 </section>
                                                             )
                                                         })

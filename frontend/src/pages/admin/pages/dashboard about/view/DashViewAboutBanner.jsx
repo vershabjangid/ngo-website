@@ -148,7 +148,7 @@ export function DashViewAboutBanner() {
                             <div className='text-[25px] flex items-center'>
                                 <FaInfo />
                                 <h1 className='font-[600] ms-2'>
-                                    About Banner Section
+                                    About Us
                                 </h1>
                             </div>
                             <div className='font-[500] text-[15px]'>

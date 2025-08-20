@@ -64,12 +64,12 @@ export function QuickLinks() {
                     </section>
             }
 
-            <section className='bottom_quick_Links fixed z-[9999] w-[100%] hidden pt-3 bg-[white] bottom-0 rounded-t-[50px]'>
+            <section className='bottom_quick_Links fixed z-[9999] w-[100%] hidden pt-3 bg-[white] left-0 bottom-0 rounded-t-[50px]'>
                 <section className='w-[100%]'>
                     <ul className='flex justify-evenly w-[100%]'>
                         <li className=''>
                             <Link to={"/id-card"} className='flex justify-end items-center text-[#ffbe25] text-[18px] font-[600] mb-2 '>
-                                <div className='w-[40px] h-[40px] rounded-[50%] bg-[white]'>
+                                <div className='w-[40px] h-[40px]  rounded-[50%] bg-[white]'>
                                     <img src={idcard} alt="" />
                                 </div>
                             </Link>

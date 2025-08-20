@@ -37,6 +37,25 @@ import { Contact } from './pages/web/pages/Contact';
 import { DashContact } from './pages/admin/pages/DashContact';
 import { DashViewContactBanner } from './pages/admin/pages/dashboard contact/view/DashViewContactBanner';
 import { DashQueries } from './pages/admin/pages/DashQueries';
+import { DashTerms } from './pages/admin/pages/DashTerms';
+import { DashViewTermsBanner } from './pages/admin/pages/dashboard terms/view/DashViewTermsBanner';
+import { TermsConditions } from './pages/web/pages/TermsConditions';
+import { DashViewTermsParagraphSection } from './pages/admin/pages/dashboard terms/view/DashViewTermsParagraphSection';
+import { DashViewTermsParagraph } from './pages/admin/pages/dashboard terms/view/DashViewTermsParagraph';
+import { PrivacyPolicy } from './pages/web/pages/PrivacyPolicy';
+import { DashPrivacy } from './pages/admin/pages/DashPrivacy';
+import { DashViewPrivacyBanner } from './pages/admin/pages/dashboard privacy/view/DashViewPrivacyBanner';
+import { DashViewPrivacyParagraphSection } from './pages/admin/pages/dashboard privacy/view/DashViewPrivacyParagraphSection';
+import { DashViewPrivacyParagraph } from './pages/admin/pages/dashboard privacy/view/DashViewPrivacyParagraph';
+import { Register } from './pages/web/auth/Register';
+import { Otp_Verification } from './pages/web/auth/Otp_Verification';
+import { CreateProfile } from './pages/web/auth/CreateProfile';
+import { Login } from './pages/web/auth/Login';
+import { ForgotPassword } from './pages/web/auth/ForgotPassword';
+import { ForgotOtp } from './pages/web/auth/ForgotOtp';
+import { ChangePassword } from './pages/web/auth/ChangePassword';
+import { WebPrivate } from './pages/web/auth/WebPrivate';
+import { UserPanel } from './pages/web/pages/userpanel/UserPanel';
 
 function App() {
   return (
@@ -48,7 +67,21 @@ function App() {
           <Route path='/gallery' element={<Gallery />} />
           <Route path='/contact-us' element={<Contact />} />
           <Route path='/news' element={<NewsEvents />} />
+          <Route path='/terms-conditions' element={<TermsConditions />} />
+          <Route path='/privacy-policy' element={<PrivacyPolicy />} />
+          {/* website  */}
+          <Route path='/sign-up' element={<Register />} />
+          <Route path='/sign-in' element={<Login />} />
+          <Route path='/forgot-password' element={<ForgotPassword />} />
+          <Route path="/otp-verification" element={<Otp_Verification />} />
+          <Route path="/create-profile" element={<CreateProfile />} />
+          <Route path="/verify-otp" element={<ForgotOtp />} />
+          <Route path="/change-password" element={<ChangePassword />} />
+          <Route element={<WebPrivate />}>
+            <Route path="/user-panel" element={<UserPanel />} />
+          </Route>
 
+          {/* dashboard  */}
           <Route path='/admin-login' element={<AdminLogin />} />
           <Route element={<AdminPrivate />}>
             <Route path='/dashboard' element={<Dashboard />} />
@@ -90,6 +123,18 @@ function App() {
             <Route path='/dash-contact' element={<DashContact />} />
             <Route path='/view-contact-banner' element={<DashViewContactBanner />} />
             <Route path='/dash-queries' element={<DashQueries />} />
+
+            {/* terms & condition */}
+            <Route path='/dash-terms' element={<DashTerms />} />
+            <Route path='/view-terms-banner' element={<DashViewTermsBanner />} />
+            <Route path='/view-terms-paragraph' element={<DashViewTermsParagraphSection />} />
+            <Route path='/view-all-terms-paragraph' element={<DashViewTermsParagraph />} />
+
+            {/* terms & condition */}
+            <Route path='/dash-privacy' element={<DashPrivacy />} />
+            <Route path='/view-privacy-banner' element={<DashViewPrivacyBanner />} />
+            <Route path='/view-privacy-paragraph' element={<DashViewPrivacyParagraphSection />} />
+            <Route path='/view-all-privacy-paragraph' element={<DashViewPrivacyParagraph />} />
 
           </Route>
         </Routes>

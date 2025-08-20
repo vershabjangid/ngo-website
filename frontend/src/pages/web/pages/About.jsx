@@ -4,6 +4,7 @@ import { Footer } from '../../../common/Footer'
 import { apiurl } from '../../../apiurl/Apiurl'
 import { Logo } from '../../../common/Logo'
 import { FixedOptionHeader } from '../../../common/FixedOptionHeader'
+import { QuickLinks } from './QuickLinks'
 
 export function About() {
     let [aboutbannerdata, setaboutbannerdata] = useState([])
@@ -78,9 +79,12 @@ export function About() {
                 }
 
                 <section className='w-[100%] py-[20px] px-[10px]'>
-                    <section className='w-[100%] mb-[20px] uppercase text-center'>
-                        <h1 className='text-[30px] font-[700]'>About Us</h1>
-                    </section>
+                    {
+                        aboutparagraph.length === 0 ? null :
+                            <section className='w-[100%] mb-[20px] uppercase text-center'>
+                                <h1 className='text-[30px] font-[700]'>About Us</h1>
+                            </section>
+                    }
                     {
                         aboutparagraph.length === 0 ? null
                             :
@@ -149,6 +153,7 @@ export function About() {
                                 )
                             })
                     }
+                     <QuickLinks />
                 </section>
                 <Footer />
             </section >

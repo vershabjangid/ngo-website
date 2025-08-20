@@ -34,7 +34,7 @@ export function AdminLogin() {
                     if (res.data.Status === 1) {
                         notificationsuccess(res.data.Message)
                         document.cookie = `admintoken=${res.data.Token}`
-                        navigate('/dashboard')
+                        navigate('/dash-home')
                     }
                     else {
                         notificationerror(res.data.Message)

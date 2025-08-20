@@ -126,7 +126,7 @@ export function DashViewAboutParagraphSection() {
                                     <div className='w-[100%] flex justify-between my-[10px]'>
                                         <div className='w-[100%]'>
                                             <label htmlFor="homebannerheading">
-                                               About Paragraph Heading
+                                                About Paragraph Heading
                                             </label>
 
                                             <input maxLength={100} defaultValue={updatemodaldata.About_Heading} id='homebannerheading' type="text" className='w-[100%] p-[10px] border-[1px] border-[grey] text-[grey] mt-1 rounded-[25px]' onChange={(e) => formik.setFieldValue('About_Heading', e.target.value)} />
@@ -208,11 +208,11 @@ export function DashViewAboutParagraphSection() {
                             <div className='text-[25px] flex items-center'>
                                 <FaInfo />
                                 <h1 className='font-[600] ms-2'>
-                                    About Banner Section
+                                    About Us
                                 </h1>
                             </div>
                             <div className='font-[500] text-[15px]'>
-                                <p>Dashboard / <span className='text-[#000000]'>About Us</span> / <span className='text-[#1385ff]'> About Banner Section</span></p>
+                                <p>Dashboard / <span className='text-[#000000]'>About Us</span> / <span className='text-[#1385ff]'> About Paragraph Section</span></p>
                             </div>
                         </section>
 

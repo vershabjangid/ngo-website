@@ -180,11 +180,11 @@ exports.updatenewsbannercontroller = async (req, res) => {
             })
         }
         else {
+            fs.unlinkSync(`${finalpath}/${req.files[0].filename}`)
             res.send({
                 Status: 0,
                 Message: "Something went wrong"
             })
-            fs.unlinkSync(`${finalpath}/${viewdata.News_Banner_Image}`)
         }
     }
 }
@@ -373,13 +373,12 @@ exports.updatenewscontroller = async (req, res) => {
             })
         }
         else {
+            fs.unlinkSync(`${finalpath}/${req.files[0].filename}`)
             res.send({
                 Status: 0,
                 Message: "Something went wrong"
             })
-            fs.unlinkSync(`${finalpath}/${viewdata.News_Image}`)
         }
-
     }
 }
 

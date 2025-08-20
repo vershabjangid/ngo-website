@@ -58,3 +58,61 @@ exports.adminlogin = (req, res) => {
         })
     }
 }
+
+
+
+
+
+
+
+exports.adminlogout = (req, res) => {
+    try {
+        let token = req.headers['authorization']
+        let decode = jwt.decode(token)
+        if (decode.exp !== undefined || decode.exp !== null) {
+            decode.exp = 0
+            req.session.user = undefined
+            res.send({
+                Status: 1,
+                Message: "Logout Successfully"
+            })
+        }
+        else {
+            res.send({
+                Status: 0,
+                Message: "Unable to Logout"
+            })
+        }
+    }
+    catch (error) {
+        res.send({
+            Status: 0,
+            Message: "Something went wrong"
+        })
+    }
+}
+
+
+
+exports.checkadminsession = (req, res) => {
+    try {
+        if (req.session.user !== undefined) {
+            res.send({
+                Status: 1,
+                Message: "Session Active"
+            })
+        }
+        else {
+            res.send({
+                Status: 0,
+                Message: "Session Expired"
+            })
+        }
+    }
+    catch (error) {
+        res.send({
+            Status: 0,
+            Message: "Something went wrong"
+        })
+    }
+}
