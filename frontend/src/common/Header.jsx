@@ -76,14 +76,14 @@ export function Header() {
                     <section className=' relative'>
                         <header className='bg-[white] h-[90px] flex items-center justify-between p-2 px-3'>
                             <section className='flex items-center'>
-                                <section className='Logo_section w-[80px] '>
+                                <section className='Logo_section w-[200px] '>
                                     <Logo />
                                 </section>
 
-                                <section className='ms-2'>
+                                {/* <section className='ms-2'>
                                     <p className='header_heading text-[30px] font-[600]'>RESERVE CATEGORY & MINORITY</p>
                                     <p className='header_sub_heading'>INDIAN CHAMBER OF COMMERCE & INDUSTRY</p>
-                                </section>
+                                </section> */}
                             </section>
 
                             <section className='flex items-center'>

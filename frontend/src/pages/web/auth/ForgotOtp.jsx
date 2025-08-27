@@ -145,7 +145,7 @@ export function ForgotOtp() {
                 <section className='login_right w-[50%] h-[100%] bg-white flex justify-center items-center flex-col overflow-y-scroll pb-4'>
                     <div className='w-[80%]'>
                         <div className='w-[100%]'>
-                            <div className='w-[100px] m-auto'>
+                            <div className='w-[160px] mb-4  m-auto'>
                                 <Logo />
                             </div>
                             <h1 className='text-[30px] font-[600] text-center'>OTP VERIFICATION</h1>
