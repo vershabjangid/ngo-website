@@ -178,8 +178,8 @@ export function Home() {
                                 {
                                     bannerdata.map((items, ind) => {
                                         return (
-                                            <SwiperSlide key={ind}>
-                                                <div className='home_banner_slides w-[100%] h-[100vh] flex justify-center items-center' style={{ background: `url(${imgurl + items.Home_Banner_Image})`, backgroundSize: "cover" }}>
+                                            <SwiperSlide className='border-0' key={ind}>
+                                                <div className='home_banner_slides w-[100%] h-[100vh] flex justify-center items-center border-0' style={{ background: `url(${imgurl + items.Home_Banner_Image})`, backgroundSize: "cover" }}>
                                                     <section className='w-[100%] h-[100%] flex items-center bg-[#00000088] '>
                                                         <section className='w-[100%] text-center p-3'>.
                                                             <section className='w-[120px] m-auto'>
@@ -217,7 +217,7 @@ export function Home() {
                                     {aboutdata.Home_About_Description}
                                 </p>
 
-                                <Link className='w-[160px] h-[50px] rounded-[30px] bg-[black] text-white font-[600] flex items-center justify-center'>
+                                <Link to={"/about"} className='w-[160px] h-[50px] rounded-[30px] bg-[black] text-white font-[600] flex items-center justify-center'>
                                     Know More <FiArrowRight className='text-[20px] ms-3' />
                                 </Link>
                             </section>
