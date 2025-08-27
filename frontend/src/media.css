@@ -22,6 +22,17 @@
     }
 }
 
+
+@media screen and (max-width:1150px) {
+
+
+    .dashboard_status_cards_section>div {
+        width: 45% !important;
+        margin: 20px 10px;
+    }
+}
+
+
 @media screen and (max-width:1056px) {
     .login_banner {
         display: none;
@@ -31,7 +42,7 @@
         width: 100% !important;
     }
 
-    .login_profile_banner{
+    .login_profile_banner {
         display: none;
     }
 }
@@ -144,9 +155,15 @@
         width: 100%;
     }
 
-    .desktop_megamenu{
+    .desktop_megamenu {
         display: none;
     }
+
+    .user_admin_sidebar {
+        display: none;
+    }
+
+
 }
 
 
@@ -234,6 +251,30 @@
     .home_banner_slides {
         height: auto;
     }
+
+    .dashboard_status_cards_section>div {
+        width: 100% !important;
+        margin: 20px 10px;
+    }
+
+    .useradmin_content_section {
+        padding: 10px;
+    }
+}
+
+
+
+@media screen and (max-height:498px) {
+    .payment_overlay>section {
+        height: 100%;
+    }
+}
+
+
+@media screen and (max-width:498px) {
+    .payment_overlay>section {
+        height: 100%;
+    }
 }
 
 @media screen and (max-width:470px) {
@@ -306,9 +347,9 @@
         width: 100%;
     }
 
-    .megamenu{
+    .megamenu {
         width: 100%;
         height: 100vh;
     }
-    
+
 }

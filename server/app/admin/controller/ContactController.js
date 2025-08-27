@@ -248,7 +248,7 @@ exports.AddQueriescontroller = async (req, res) => {
 
 exports.ViewQueriescontroller = async (req, res) => {
     try {
-        let viewdata = await queriesmodel.find();
+        let viewdata = await queriesmodel.find().sort({ _id: -1 });
         let imgurl = imageurl
 
         res.send({ viewdata, imgurl })

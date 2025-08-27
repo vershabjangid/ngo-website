@@ -57,7 +57,7 @@ export function AdminLogin() {
                     </div>
                     <div className='text-center mb-[20px]'>
                         <h1 className='text-[30px] font-[700]'>
-                            Admin Login
+                            Developer Login
                         </h1>
                         <p>
                             Welcome admin please enter your details to login

@@ -45,7 +45,7 @@ export function QuickLinks() {
                                 </li>
 
                                 <li className=''>
-                                    <Link to={"/donate"} className='flex justify-end items-center text-[#ffbe25] text-[18px] font-[600] mb-2'>
+                                    <Link to={"/donate-us"} className='flex justify-end items-center text-[#ffbe25] text-[18px] font-[600] mb-2'>
                                         Donate
                                         <div className='w-[40px] h-[40px] rounded-[50%] bg-[white] ms-2'>
                                             <img src={donate} alt="" />
@@ -84,7 +84,7 @@ export function QuickLinks() {
                         </li>
 
                         <li className=''>
-                            <Link to={"/certificate"} className='flex justify-end items-center text-[#ffbe25] text-[18px] font-[600] mb-2'>
+                            <Link to={"/certificates"} className='flex justify-end items-center text-[#ffbe25] text-[18px] font-[600] mb-2'>
                                 <div className='w-[40px] h-[40px] rounded-[50%] bg-[white]'>
                                     <img src={certificate} alt="" />
                                 </div>
@@ -92,7 +92,7 @@ export function QuickLinks() {
                         </li>
 
                         <li className=''>
-                            <Link to={"/donate"} className='flex justify-end items-center text-[#ffbe25] text-[18px] font-[600] mb-2'>
+                            <Link to={"/donate-us"} className='flex justify-end items-center text-[#ffbe25] text-[18px] font-[600] mb-2'>
                                 <div className='w-[40px] h-[40px] rounded-[50%] bg-[white]'>
                                     <img src={donate} alt="" />
                                 </div>

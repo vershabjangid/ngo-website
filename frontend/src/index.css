@@ -56,6 +56,47 @@ input[type=number]::-webkit-inner-spin-button {
     display: none;
 }
 
-.desktop_megamenu::-webkit-scrollbar{
+.desktop_megamenu::-webkit-scrollbar {
     display: none;
 }
+
+
+.useradmin_content_section::-webkit-scrollbar {
+    display: none;
+}
+
+.dashboard_status_cards_section {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+
+.id_card {
+    background-image: url("../src/images/ombre-blue-curve-light-blue-background-vector.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.user_admin_sidebar::-webkit-scrollbar {
+    display: none;
+}
+
+.payment_overlay>section>section::-webkit-scrollbar {
+    display: none !important;
+}
+
+.payment_overlay_inner ::-webkit-scrollbar {
+     display: none !important;
+}
+
+.profile_banner{
+    background-image: url("../src/images/29085460_1938.jpg");
+    background-size: cover;
+}
+
+
+
+
+

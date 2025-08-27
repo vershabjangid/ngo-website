@@ -6,9 +6,14 @@ const fs = require('fs')
 const path = require('path');
 const registermodel = require('../model/RegisterModel');
 const createprofilemodel = require('../model/CreateProfileModel');
+const membershippaymentsmodel = require('../model/MembershipPaymentModal');
+const { isNumber } = require('razorpay/dist/utils/razorpay-utils');
 let finalpath = path.join(__dirname, "../../../uploads")
-
 require('dotenv').config();
+let imageurl = "http://194.238.22.240:5500/uploads/"
+
+
+
 const transporter = nodemailer.createTransport({
     host: process.env.EMAILSMTP,
     port: 587,
@@ -230,113 +235,250 @@ exports.resendotp = async (req, res) => {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+//   if (req.files[0] !== undefined && req.files[1] !== undefined && !req.files[0].filename.includes(".fake") && !req.files[1].filename.includes(".fake")) {
+//                 let searchregister = await registermodel.findOne({ Email: req.body.Email })
+//                 if (searchregister === null) {
+//                     res.send({
+//                         Status: 0,
+//                         Message: 'No User Found'
+//                     })
+//                     fs.unlinkSync(`${finalpath}/${req.files[0].filename}`)
+//                     fs.unlinkSync(`${finalpath}/${req.files[1].filename}`)
+//                 }
+//                 else if (req.body.Aadhar_NO.length !== 12) {
+//                     res.send({
+//                         Status: 0,
+//                         Message: 'Invalid Inputs'
+//                     })
+//                     fs.unlinkSync(`${finalpath}/${req.files[0].filename}`)
+//                     fs.unlinkSync(`${finalpath}/${req.files[1].filename}`)
+//                 }
+//                 else {
+//                     let searchprofile = await createprofilemodel.findOne({ Sub_Id: searchregister._id })
+//                     if (searchprofile !== null) {
+//                         res.send({
+//                             Status: 0,
+//                             Message: 'Data Already Exists'
+//                         })
+//                         fs.unlinkSync(`${finalpath}/${req.files[0].filename}`)
+//                         fs.unlinkSync(`${finalpath}/${req.files[1].filename}`)
+//                     }
+// else {
+
+// }
+// }
+//             }
+//             else {
+
+//                 if (req.files[0] !== undefined && req.files[1] !== undefined) {
+//                     for (var i = 0; i < req.files.length; i++) {
+//                         fs.unlinkSync(`${finalpath}/${req.files[i].filename}`)
+//                     }
+//                     res.send({
+//                         Status: 0,
+//                         Message: 'Data Missing'
+//                     })
+//                 }
+//                 else {
+//                     if (req.files[0] !== undefined || req.files[1] !== undefined) {
+//                         fs.unlinkSync(`${finalpath}/${req.files[0].filename}`)
+//                         res.send({
+//                             Status: 0,
+//                             Message: 'Data Missing'
+//                         })
+//                     }
+//                     else {
+//                         res.send({
+//                             Status: 0,
+//                             Message: 'Data Missing'
+//                         })
+//                     }
+//                 }
+//             }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 exports.createprofilecontroller = async (req, res) => {
     try {
-        if (req.files[0] !== undefined && req.files[1] !== undefined && !req.files[0].filename.includes(".fake") && !req.files[1].filename.includes(".fake")) {
 
-            let searchregister = await registermodel.findOne({ Email: req.body.Email })
-            if (searchregister === null) {
-                res.send({
-                    Status: 0,
-                    Message: 'No User Found'
-                })
-                fs.unlinkSync(`${finalpath}/${req.files[0].filename}`)
-                fs.unlinkSync(`${finalpath}/${req.files[1].filename}`)
-            }
-            else if (req.body.Aadhar_NO.length !== 12) {
-                res.send({
-                    Status: 0,
-                    Message: 'Invalid Inputs'
-                })
-                fs.unlinkSync(`${finalpath}/${req.files[0].filename}`)
-                fs.unlinkSync(`${finalpath}/${req.files[1].filename}`)
-            }
-            else {
-                let searchprofile = await createprofilemodel.findOne({ Sub_Id: searchregister._id })
-                if (searchprofile !== null) {
-                    res.send({
-                        Status: 0,
-                        Message: 'Data Already Exists'
-                    })
-                    fs.unlinkSync(`${finalpath}/${req.files[0].filename}`)
-                    fs.unlinkSync(`${finalpath}/${req.files[1].filename}`)
-                }
-                else {
-                    let data = {
-                        Sub_Id: searchregister._id,
-                        Full_Name: req.body.Full_Name,
-                        Father_Name: req.body.Father_Name,
-                        Occupation: req.body.Occupation,
-                        Date_Of_Birth: req.body.Date_Of_Birth,
-                        Address: req.body.Address,
-                        Aadhar_NO: req.body.Aadhar_NO,
-                        Upload_Aadhar: req.files[0].filename,
-                        City: req.body.City,
-                        Select_Designation: req.body.Select_Designation,
-                        Profile_Picture: req.files[1].filename
-                    }
-                    let insertdata = await createprofilemodel(data)
-                    insertdata.save()
-                        .then(() => {
-                            res.send({
-                                Status: 1,
-                                Message: 'Profile Created Successfully'
-                            })
-                            updateverification(data.Sub_Id)
-                        })
-                        .catch((error) => {
-                            if (error.code === 11000) {
-                                res.send({
-                                    Status: 0,
-                                    Message: 'Data Already Exists'
+        let date = new Date()
+        let birthdate = new Date(req.body.Date_Of_Birth)
+        let age = date.getFullYear() - birthdate.getFullYear();
+        let monthdiff = date.getMonth() - birthdate.getMonth();
 
-                                })
+        if (monthdiff < 0 || (monthdiff < 0 && date.getDate() < birthdate.getDate())) {
+            age--
+        }
+
+        if (age >= 18) {
+            if (req.files[0] !== undefined && req.files[1] !== undefined) {
+                console.log(req.body, '1')
+                if (!req.files[0].filename.includes('.fake') && !req.files[1].filename.includes('.fake')) {
+                    console.log(req.body, '2')
+                    if (req.body.Aadhar_NO.length === 12 && Number(req.body.Aadhar_NO) !== NaN) {
+                        console.log(req.body, '3')
+                        let searchregister = await registermodel.findOne({ Email: req.body.Email })
+                        console.log(req.body, '4')
+                        if (searchregister !== null) {
+                            console.log(req.body, '5')
+                            let data = {
+                                Sub_Id: searchregister._id,
+                                User_ID: "SRT-" + Math.floor(Math.random() * 10000),
+                                Full_Name: req.body.Full_Name,
+                                Father_Name: req.body.Father_Name,
+                                Occupation: req.body.Occupation,
+                                Date_Of_Birth: req.body.Date_Of_Birth,
+                                Address: req.body.Address,
+                                Aadhar_NO: req.body.Aadhar_NO,
+                                Upload_Aadhar: req.files[0].filename,
+                                City: req.body.City,
+                                Select_Designation: req.body.Select_Designation,
+                                Profile_Picture: req.files[1].filename
                             }
-                            else {
-                                res.send({
-                                    Status: 0,
-                                    Message: 'Data Missing'
+
+                            let insertdata = await createprofilemodel(data)
+                            insertdata.save()
+                                .then(() => {
+                                    res.send({
+                                        Status: 1,
+                                        Message: 'Profile Created Successfully'
+                                    })
+                                    updateverification(data.Sub_Id)
                                 })
-                            }
+                                .catch((error) => {
+                                    if (error.code === 11000) {
+                                        res.send({
+                                            Status: 0,
+                                            Message: 'Data Already Exists'
+
+                                        })
+                                    }
+                                    else {
+                                        res.send({
+                                            Status: 0,
+                                            Message: 'Data Missing'
+                                        })
+                                    }
+                                    fs.unlinkSync(`${finalpath}/${req.files[0].filename}`)
+                                    fs.unlinkSync(`${finalpath}/${req.files[1].filename}`)
+                                })
+                        }
+                        else {
                             fs.unlinkSync(`${finalpath}/${req.files[0].filename}`)
                             fs.unlinkSync(`${finalpath}/${req.files[1].filename}`)
+                            res.send({
+                                Status: 0,
+                                Message: 'User not found'
+                            })
+                        }
+                    }
+                    else {
+                        fs.unlinkSync(`${finalpath}/${req.files[0].filename}`)
+                        fs.unlinkSync(`${finalpath}/${req.files[1].filename}`)
+                        res.send({
+                            Status: 0,
+                            Message: 'Invalid AadharCard Number'
                         })
+                    }
+                }
+                else {
+                    fs.unlinkSync(`${finalpath}/${req.files[0].filename}`)
+                    fs.unlinkSync(`${finalpath}/${req.files[1].filename}`)
+                    res.send({
+                        Status: 0,
+                        Message: 'Invalid File'
+                    })
+                }
+            }
+            else {
+                if (req.files[0] === undefined) {
+                    res.send({
+                        Status: 0,
+                        Message: 'Data Missing'
+                    })
+                }
+                else {
+                    fs.unlinkSync(`${finalpath}/${req.files[0].filename}`)
+                    res.send({
+                        Status: 0,
+                        Message: 'Data Missing'
+                    })
                 }
             }
         }
         else {
-
-            if (req.files[0] !== undefined && req.files[1] !== undefined) {
-                for (var i = 0; i < 2; i++) {
+            if (req.files[0] === undefined) {
+                res.send({
+                    Status: 0,
+                    Message: 'Minimum 18 year required'
+                })
+            }
+            else {
+                for (var i = 0; i < req.files.length; i++) {
                     fs.unlinkSync(`${finalpath}/${req.files[i].filename}`)
                 }
                 res.send({
                     Status: 0,
-                    Message: 'Data Missing'
+                    Message: 'Minimum 18 year required'
                 })
-            }
-            else {
-                if (req.files[0] !== undefined || req.files[1] !== undefined) {
-                    fs.unlinkSync(`${finalpath}/${req.files[0].filename}`)
-                    res.send({
-                        Status: 0,
-                        Message: 'Data Missing'
-                    })
-                }
-                else {
-                    res.send({
-                        Status: 0,
-                        Message: 'Data Missing'
-                    })
-                }
             }
         }
     }
     catch (error) {
-        res.send({
-            Status: 0,
-            Message: "Something Went Wrong"
-        })
+        if (req.files[0] === undefined) {
+            res.send({
+                Status: 0,
+                Message: "Something Went Wrong"
+            })
+        }
+        else {
+            for (var i = 0; i < req.files.length; i++) {
+                fs.unlinkSync(`${finalpath}/${req.files[i].filename}`)
+            }
+            res.send({
+                Status: 0,
+                Message: "Something Went Wrong"
+            })
+        }
     }
 }
 
@@ -349,45 +491,52 @@ exports.logincontroller = async (req, res) => {
         }
 
         let viewdata = await registermodel.findOne({ Email: data.Email })
-        let match = await bcrypt.compare(req.body.Password, viewdata.Password)
-        // let viewprofiledata = await createprofilemodel.findOne({ Sub_Id: viewdata._id })
-
-        if (viewdata !== null && match === false) {
+        if (viewdata !== null) {
+            let match = await bcrypt.compare(data.Password, viewdata.Password)
+            if (match === false) {
+                res.send({
+                    Status: 0,
+                    Message: "Incorrect Email or Password"
+                })
+            }
+            else {
+                if (viewdata.Is_Verified === 1) {
+                    //         let update = await membershippaymentsmodel.find({ User_Id: viewdata._id })
+                    // console.log(update)
+                    let newtoken;
+                    jwt.sign({ newtoken }, process.env.WEBJWTTOKEN, { expiresIn: "2h" }, (err, value) => {
+                        if (err) {
+                            res.send({
+                                Status: 0,
+                                Message: "Please try after sometime",
+                            })
+                        }
+                        else {
+                            req.session.user = viewdata._id
+                            res.send({
+                                _id: viewdata._id,
+                                Status: 1,
+                                Message: "Login Successfully",
+                                Token: value
+                            })
+                        }
+                    })
+                }
+                else {
+                    res.send({
+                        Status: 2,
+                        Message: "OTP Sended Successfully "
+                    })
+                    loginresend(req.body.Email)
+                }
+            }
+        }
+        else {
             res.send({
                 Status: 0,
                 Message: "Incorrect Email or Password"
             })
         }
-        else {
-            if (viewdata.Is_Verified === 1) {
-                let newtoken;
-                jwt.sign({ newtoken }, process.env.WEBJWTTOKEN, { expiresIn: "2h" }, (err, value) => {
-                    if (err) {
-                        res.send({
-                            Status: 0,
-                            Message: "Please try after sometime",
-                        })
-                    }
-                    else {
-                        req.session.user = viewdata._id
-                        res.send({
-                            _id: viewdata._id,
-                            Status: 1,
-                            Message: "Login Successfully",
-                            Token: value
-                        })
-                    }
-                })
-            }
-            else {
-                res.send({
-                    Status: 2,
-                    Message: "OTP Sended Successfully "
-                })
-                loginresend(req.body.Email)
-            }
-        }
-
     }
     catch (error) {
         res.send({
@@ -419,8 +568,6 @@ async function loginresend(value) {
 }
 
 exports.checkwebsession = async (req, res) => {
-    console.log(req.session.user)
-
     if (req.session.user !== undefined) {
         res.send({
             Status: 1,
@@ -520,3 +667,265 @@ exports.updatepassword = async (req, res) => {
         })
     }
 }
+
+
+
+
+exports.weblogout = (req, res) => {
+    try {
+        let token = req.headers['authorization']
+        let decode = jwt.decode(token)
+        if (decode.exp !== undefined || decode.exp !== null) {
+            decode.exp = 0
+            req.session.user = undefined
+            res.send({
+                Status: 1,
+                Message: "Logout Successfully"
+            })
+        }
+        else {
+            res.send({
+                Status: 0,
+                Message: "Unable to Logout"
+            })
+        }
+    }
+    catch (error) {
+        res.send({
+            Status: 0,
+            Message: "Something went wrong"
+        })
+    }
+}
+
+exports.viewprofile = async (req, res) => {
+    try {
+        let viewregister = await registermodel.findOne({ _id: req.session.user }).select(['-Password', '-OTP_Value', '-Expired_In', '-Is_Verified'])
+        let viewdata = await createprofilemodel.findOne({ Sub_Id: req.session.user }).select(['-Aadhar_NO', '-Upload_Aadhar'])
+        let viewmembership = await membershippaymentsmodel.findOne({ User_Id: req.session.user, Status: "Paid" })
+
+        if (viewmembership !== null) {
+            res.send({ viewregister, viewdata, imageurl })
+        }
+        else {
+            let viewdata = await createprofilemodel.findOne({ Sub_Id: req.session.user }).select(['-Aadhar_NO', '-Upload_Aadhar', '-Father_Name', '-Occupation', '-Date_Of_Birth', '-Address', '-Aadhar_NO', '-Upload_Aadhar', '-City', '-Select_Designation', '-Profile_Picture', '-User_ID'])
+            res.send({
+                viewregister,
+                viewdata,
+                Status: 2,
+                Message: "Membership is required"
+            })
+        }
+    }
+    catch (error) {
+        res.send({
+
+            Status: 0,
+            Message: "Something went wrong"
+        })
+    }
+}
+
+
+
+exports.viewallusers = async (req, res) => {
+    try {
+        let viewdata = await createprofilemodel.find();
+        let data = viewdata.flatMap((e) => e.Sub_Id)
+        let finaldata = [...data]
+        let viewprofile = await registermodel.find({ _id: { $in: finaldata } }).select(['-OTP_Value', '-Expired_In', '-Is_Verified', '-Password'])
+        res.send({ viewdata, viewprofile, imageurl })
+    }
+    catch (error) {
+        res.send({
+            Status: 0,
+            Message: "Something went wrong"
+        })
+    }
+}
+
+
+
+exports.updateprofile = async (req, res) => {
+    try {
+        let finddata = await createprofilemodel.findOne({ Sub_Id: req.session.user })
+        if (req.files[0] === undefined) {
+            if (finddata === null) {
+                res.send({
+                    Status: 0,
+                    Message: "Data Not Found"
+                })
+            }
+            else {
+                let data = {
+                    Sub_Id: finddata.Sub_id,
+                    Full_Name: req.body.Full_Name === "" || req.body.Full_Name === null ? finddata.Full_Name : req.body.Full_Name,
+                    Father_Name: req.body.Father_Name === "" || req.body.Father_Name === null ? finddata.Father_Name : req.body.Father_Name,
+                    Occupation: req.body.Occupation === "" || req.body.Occupation === null ? finddata.Occupation : req.body.Occupation,
+                    Date_Of_Birth: req.body.Date_Of_Birth === "" || req.body.Date_Of_Birth === null ? finddata.Date_Of_Birth : req.body.Date_Of_Birth,
+                    Address: req.body.Address === "" || req.body.Address === null ? finddata.Address : req.body.Address,
+                    City: req.body.City === "" || req.body.City === null ? finddata.City : req.body.City,
+                    Select_Designation: req.body.Select_Designation === "" || req.body.Select_Designation === null ? finddata.Select_Designation : req.body.Select_Designation
+                }
+
+                let updateprofile = await createprofilemodel.updateOne({ Sub_Id: req.session.user }, {
+                    Full_Name: data.Full_Name,
+                    Father_Name: data.Father_Name,
+                    Occupation: data.Occupation,
+                    Date_Of_Birth: data.Date_Of_Birth,
+                    Address: data.Address,
+                    City: data.City,
+                    Select_Designation: data.Select_Designation
+                })
+
+
+                if (updateprofile.modifiedCount > 0) {
+                    res.send({
+                        Status: 1,
+                        Message: "Data Updated Successfully"
+                    })
+                }
+                else {
+                    res.send({
+                        Status: 0,
+                        Message: "Data Doesn't Updated"
+                    })
+                }
+            }
+        }
+        else {
+            if (finddata === null) {
+                res.send({
+                    Status: 0,
+                    Message: "Data Not Found"
+                })
+                fs.unlinkSync(`${finalpath}/${req.files[0].filename}`)
+            }
+            else {
+                let data = {
+                    Sub_Id: finddata.Sub_id,
+                    Full_Name: req.body.Full_Name === "" || req.body.Full_Name === null ? finddata.Full_Name : req.body.Full_Name,
+                    Father_Name: req.body.Father_Name === "" || req.body.Father_Name === null ? finddata.Father_Name : req.body.Father_Name,
+                    Occupation: req.body.Occupation === "" || req.body.Occupation === null ? finddata.Occupation : req.body.Occupation,
+                    Date_Of_Birth: req.body.Date_Of_Birth === "" || req.body.Date_Of_Birth === null ? finddata.Date_Of_Birth : req.body.Date_Of_Birth,
+                    Address: req.body.Address === "" || req.body.Address === null ? finddata.Address : req.body.Address,
+                    City: req.body.City === "" || req.body.City === null ? finddata.City : req.body.City,
+                    Select_Designation: req.body.Select_Designation === "" || req.body.Select_Designation === null ? finddata.Select_Designation : req.body.Select_Designation,
+                    Profile_Picture: req.files[0].filename
+                }
+
+                let updateprofile = await createprofilemodel.updateOne({ Sub_Id: req.session.user }, {
+                    Full_Name: data.Full_Name,
+                    Father_Name: data.Father_Name,
+                    Occupation: data.Occupation,
+                    Date_Of_Birth: data.Date_Of_Birth,
+                    Address: data.Address,
+                    City: data.City,
+                    Select_Designation: data.Select_Designation,
+                    Profile_Picture: data.Profile_Picture
+                })
+
+
+                if (updateprofile.modifiedCount > 0) {
+                    res.send({
+                        Status: 1,
+                        Message: "Data Updated Successfully"
+                    })
+                    fs.unlinkSync(`${finalpath}/${finddata.Profile_Picture}`)
+                }
+                else {
+                    res.send({
+                        Status: 0,
+                        Message: "Data Doesn't Updated"
+                    })
+                    fs.unlinkSync(`${finalpath}/${req.files[0].filename}`)
+                }
+            }
+        }
+    }
+    catch (error) {
+        if (req.files[0] !== undefined) {
+            res.send({
+                Status: 0,
+                Message: "Something Went Wrong"
+            })
+            fs.unlinkSync(`${finalpath}/${req.files[0].filename}`)
+        }
+        else {
+            res.send({
+                Status: 0,
+                Message: "Something Went Wrong"
+            })
+        }
+    }
+}
+
+
+
+
+
+//  if (req.files[0] === undefined) {
+//             let updatedata = await registermodel.findOne({ _id: req.session.user })
+//             if (updatedata === null) {
+//                 res.send({
+//                     Status: 0,
+//                     Message: "Data Not Found"
+//                 })
+//             }
+//             else {
+//                 let data = {
+//
+//                 }
+//
+
+//             }
+//         }
+//         else {
+//             let updatedata = await registermodel.findOne({ _id: req.session.user })
+//             if (updatedata === null || req.files[0].filename.includes(".fake")) {
+//                 res.send({
+//                     Status: 0,
+//                     Message: "Data Not Found"
+//                 })
+//                 fs.unlinkSync(`${finalpath}/${req.files[0].filename}`)
+//             }
+//             else {
+//                 let data = {
+//                     Sub_Id: updatedata._id,
+//                     Full_Name: req.body.Full_Name,
+//                     Father_Name: req.body.Father_Name,
+//                     Occupation: req.body.Occupation,
+//                     Date_Of_Birth: req.body.Date_Of_Birth,
+//                     Address: req.body.Address,
+//                     City: req.body.City,
+//                     Select_Designation: req.body.Select_Designation,
+//                     Profile_Picture: req.files[0].filename
+//                 }
+//                 let viewprofile = await createprofilemodel.findOne({ Sub_Id: data.Sub_Id })
+//                 let updateprofile = await createprofilemodel.updateOne({ Sub_Id: data.Sub_Id }, {
+//                     Full_Name: data.Full_Name,
+//                     Father_Name: data.Father_Name,
+//                     Occupation: data.Occupation,
+//                     Date_Of_Birth: data.Date_Of_Birth,
+//                     Address: data.Address,
+//                     City: data.City,
+//                     Select_Designation: data.Select_Designation,
+//                     Profile_Picture: data.Profile_Picture
+//                 })
+
+//                 if (updateprofile.modifiedCount > 0) {
+//                     res.send({
+//                         Status: 1,
+//                         Message: "Data Updated Successfully"
+//                     })
+//                     fs.unlinkSync(`${finalpath}/${viewprofile.Profile_Picture}`)
+//                 }
+//                 else {
+//                     res.send({
+//                         Status: 0,
+//                         Message: "Data Doesn't Updated"
+//                     })
+//                     fs.unlinkSync(`${finalpath}/${req.files[0].filename}`)
+//                 }
+//             }
+//         }

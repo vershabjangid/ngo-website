@@ -4,7 +4,11 @@ let multer = require('multer')
 let path = require('path')
 let jwt = require('jsonwebtoken')
 let dotenv = require('dotenv')
-const { websiteregister, verifyregister, resendotp, createprofilecontroller, logincontroller, forgotpassword, updatepassword, checkwebsession } = require('../../controller/AuthController')
+const { websiteregister, verifyregister, resendotp, createprofilecontroller, logincontroller, forgotpassword, updatepassword, checkwebsession, weblogout, viewprofile, updateprofile } = require('../../controller/AuthController')
+const { viewnotices } = require('../../controller/noticecontroller')
+const { viewcertificates } = require('../../controller/certificatecontroller')
+const { generatemembershipoderid, getpayments, verifymembershippayment, viewmembershipstatus, viewallmembershiptransactions } = require('../../controller/MembershipController')
+const { generatedonationorderid, viewfydonationpayment, viewalldonationstransactions } = require('../../controller/donationcontroller')
 dotenv.config({ debug: false, quiet: true });
 
 
@@ -66,15 +70,30 @@ let websitesession = (req, res, next) => {
     next();
 };
 
-    
+
 websiteroutes.post('/register', websiteregister)
 websiteroutes.post('/verify-register', verifyregister)
 websiteroutes.put('/resend-otp', resendotp)
 websiteroutes.post('/login', logincontroller)
+websiteroutes.get('/view-profile', websitesession, verifytoken, upload, viewprofile)
 websiteroutes.post('/check-web-session', checkwebsession)
-
+websiteroutes.post('/logout', websitesession, verifytoken, upload, weblogout)
 websiteroutes.post('/create-profile', websitesession, verifytoken, upload, createprofilecontroller)
+websiteroutes.get('/view-notice', verifytoken, websitesession, upload, viewnotices)
+websiteroutes.get('/view-certificates', verifytoken, websitesession, upload, viewcertificates)
+websiteroutes.post('/membership-order-id', verifytoken, websitesession, upload, generatemembershipoderid)
+websiteroutes.post('/donation-order-id', verifytoken, websitesession, upload, generatedonationorderid)
 
+websiteroutes.post('/verify-membership', verifytoken, websitesession, upload, verifymembershippayment)
+websiteroutes.post('/verify-donations', verifytoken, websitesession, upload, viewfydonationpayment)
+
+websiteroutes.post('/view-all-donations', verifytoken, websitesession, upload, viewalldonationstransactions)
+websiteroutes.post('/view-all-memberships', verifytoken, websitesession, upload, viewallmembershiptransactions)
+
+websiteroutes.put('/update-profile-data', verifytoken, websitesession, upload, updateprofile)
+
+updateprofile
+websiteroutes.get('/verify-membership', verifytoken, websitesession, upload, viewmembershipstatus)
 
 websiteroutes.post('/forgot-password', forgotpassword)
 websiteroutes.put('/change-password', websitesession, verifytoken, updatepassword)

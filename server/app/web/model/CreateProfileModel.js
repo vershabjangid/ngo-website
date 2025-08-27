@@ -6,6 +6,11 @@ let createproofileschema = mongoose.Schema({
         required: true,
         unique: true
     },
+    User_ID: {
+        type: String,
+        required: true,
+        unique: true
+    },
     Full_Name: {
         type: String,
         required: true
@@ -46,6 +51,10 @@ let createproofileschema = mongoose.Schema({
     Profile_Picture: {
         type: String,
         required: true
+    },
+    CreatedOn: {
+        type: String,
+        default: Date.now()
     }
 })
 

@@ -44,7 +44,7 @@ export function Login() {
                         notificationsuccess(res.data.Message)
                         // setloader(false)
                         document.cookie = `logintoken=${res.data.Token}`
-                        navigate('/user-panel')
+                        navigate('/user-dashboard')
                     }
                     else if (res.data.Status === 2) {
                         notificationsuccess(res.data.Message)

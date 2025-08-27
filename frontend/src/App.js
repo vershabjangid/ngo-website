@@ -56,19 +56,33 @@ import { ForgotOtp } from './pages/web/auth/ForgotOtp';
 import { ChangePassword } from './pages/web/auth/ChangePassword';
 import { WebPrivate } from './pages/web/auth/WebPrivate';
 import { UserPanel } from './pages/web/pages/userpanel/UserPanel';
+import { WebAdminLogin } from './pages/webadmin/auth/WebAdminLogin';
+import WebAdminPrivate from './pages/webadmin/auth/WebAdminPrivate';
+import { WebDashboard } from './pages/webadmin/pages/WebDashboard';
+import { WebDashboardNotice } from './pages/webadmin/pages/WebDashboardNotice';
+import { WebDashboardUsers } from './pages/webadmin/pages/WebDashboardUsers';
+import { WebDashUserProfile } from './pages/webadmin/pages/WebDashUserProfile';
+import { DashViewNotices } from './pages/webadmin/pages/web dashboard notices/view/DashViewNotices';
+import { Notices } from './pages/web/pages/userpanel/Notices';
+import { WebDashCertificates } from './pages/webadmin/pages/WebDashCertificates';
+import { DashViewCertificate } from './pages/webadmin/pages/web dashboard certificates/view/DashViewCertificate';
+import { Certificates } from './pages/web/pages/userpanel/Certificates';
+import { Membership } from './pages/web/pages/userpanel/Membership';
+import { UserDataContext } from './pages/web/pages/Context/UserDataContext';
+import { IdCard } from './pages/web/pages/userpanel/IdCard';
+import { AppointmentLetter } from './pages/web/pages/userpanel/AppointmentLetter';
+import { DonateUs } from './pages/web/pages/userpanel/DonateUs';
+import { Transactions } from './pages/web/pages/userpanel/Transactions';
+import { ViewMembershipTransactions } from './pages/web/pages/userpanel/ViewMembershipTransactions';
+import { Profile } from './pages/web/pages/userpanel/Profile';
+import { WebDashboardTransactions } from './pages/webadmin/pages/WebDashboardTransactions';
+import { WebDashboardMembershipTransactions } from './pages/webadmin/pages/WebDashboardMembershipTransactions';
 
 function App() {
   return (
     <>
       <BrowserRouter>
         <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/about' element={<About />} />
-          <Route path='/gallery' element={<Gallery />} />
-          <Route path='/contact-us' element={<Contact />} />
-          <Route path='/news' element={<NewsEvents />} />
-          <Route path='/terms-conditions' element={<TermsConditions />} />
-          <Route path='/privacy-policy' element={<PrivacyPolicy />} />
           {/* website  */}
           <Route path='/sign-up' element={<Register />} />
           <Route path='/sign-in' element={<Login />} />
@@ -77,14 +91,31 @@ function App() {
           <Route path="/create-profile" element={<CreateProfile />} />
           <Route path="/verify-otp" element={<ForgotOtp />} />
           <Route path="/change-password" element={<ChangePassword />} />
-          <Route element={<WebPrivate />}>
-            <Route path="/user-panel" element={<UserPanel />} />
+          <Route element={<UserDataContext />}>
+            <Route path='/' element={<Home />} />
+            <Route path='/about' element={<About />} />
+            <Route path='/gallery' element={<Gallery />} />
+            <Route path='/contact-us' element={<Contact />} />
+            <Route path='/news' element={<NewsEvents />} />
+            <Route path='/terms-conditions' element={<TermsConditions />} />
+            <Route path='/privacy-policy' element={<PrivacyPolicy />} />
+            <Route element={<WebPrivate />}>
+              <Route path="/user-dashboard" element={<UserPanel />} />
+              <Route path="/notice" element={<Notices />} />
+              <Route path="/certificates" element={<Certificates />} />
+              <Route path="/membership" element={<Membership />} />
+              <Route path="/id-card" element={<IdCard />} />
+              <Route path="/appointment-letter" element={<AppointmentLetter />} />
+              <Route path="/donate-us" element={<DonateUs />} />
+              <Route path="/transactions" element={<Transactions />} />
+              <Route path="/membership-transactions" element={<ViewMembershipTransactions />} />
+              <Route path="/profile" element={<Profile />} />
+            </Route>
           </Route>
 
           {/* dashboard  */}
           <Route path='/admin-login' element={<AdminLogin />} />
           <Route element={<AdminPrivate />}>
-            <Route path='/dashboard' element={<Dashboard />} />
             <Route path='/dash-home' element={<DashHome />} />
             <Route path='/view-home-banner-slides' element={<DashViewHomeBanner />} />
             <Route path='/view-home-about-section' element={<DashViewHomeAbout />} />
@@ -122,7 +153,7 @@ function App() {
             {/* contact */}
             <Route path='/dash-contact' element={<DashContact />} />
             <Route path='/view-contact-banner' element={<DashViewContactBanner />} />
-            <Route path='/dash-queries' element={<DashQueries />} />
+
 
             {/* terms & condition */}
             <Route path='/dash-terms' element={<DashTerms />} />
@@ -135,7 +166,21 @@ function App() {
             <Route path='/view-privacy-banner' element={<DashViewPrivacyBanner />} />
             <Route path='/view-privacy-paragraph' element={<DashViewPrivacyParagraphSection />} />
             <Route path='/view-all-privacy-paragraph' element={<DashViewPrivacyParagraph />} />
+          </Route>
 
+
+          <Route path='/dash-login' element={<WebAdminLogin />} />
+          <Route element={<WebAdminPrivate />}>
+            <Route path='/dashboard' element={<WebDashboard />} />
+            <Route path='/dash-notice' element={<WebDashboardNotice />} />
+            <Route path='/view-all-notices' element={<DashViewNotices />} />
+            <Route path='/dash-certificates' element={<WebDashCertificates />} />
+            <Route path='/view-all-certicates' element={<DashViewCertificate />} />
+            <Route path='/dash-queries' element={<DashQueries />} />
+            <Route path='/dash-users' element={<WebDashboardUsers />} />
+            <Route path='/view-user-profile' element={<WebDashUserProfile />} />
+            <Route path='/dash-transactions' element={<WebDashboardTransactions />} />
+            <Route path='/dash-membership-transactions' element={<WebDashboardMembershipTransactions />} />
           </Route>
         </Routes>
       </BrowserRouter>

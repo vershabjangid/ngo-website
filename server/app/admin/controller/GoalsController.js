@@ -164,12 +164,6 @@ exports.deletehomegoalscard = async (req, res) => {
 }
 
 
-
-
-
-
-
-
 exports.updatehomegoalscard = async (req, res) => {
     try {
         if (req.files[0] === undefined) {

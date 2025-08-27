@@ -1,5 +1,5 @@
 let express = require('express')
-const { adminlogin, checkadminsession, adminlogout } = require('../../../admin/controller/AuthController')
+const { adminlogin, checkadminsession, adminlogout, webadminlogin, checkwebadminsession, webadminlogout } = require('../../../admin/controller/AuthController')
 let adminroutes = express.Router()
 let multer = require('multer')
 let path = require('path')
@@ -13,6 +13,11 @@ const { addnewsbannercontroller, viewnewsbannercontroller, updatenewsbannercontr
 const { addcontactbannercontroller, viewcontactbannercontroller, updatecontactbannercontroller, AddQueriescontroller, ViewQueriescontroller, deletequeries } = require('../../../admin/controller/ContactController')
 const { addtermsbannercontroller, updatetermsbannercontroller, viewtermsbannercontroller, addtermsparagraphsection, viewtermsparagraphsection, updatetermsparagraphsection, deletetermsparagraphsection, addtermsextraparagraphcontroller, viewtermsextraparagraphcontroller, updatetermsextraparagraphcontroller, deletetermsextraparagraphcontroller } = require('../../../admin/controller/TermsController')
 const { addprivacybannercontroller, viewprivacybannercontroller, updateprivacybannercontroller, addprivacyparagraphsection, viewprivacyparagraphsection, updateprivacyparagraphsection, deleteprivacyparagraphsection, addprivacyextraparagraphcontroller, viewprivacyextraparagraphcontroller, updateprivacyextraparagraphcontroller, deleteprivacyextraparagraphcontroller } = require('../../../admin/controller/PrivacyController')
+const { viewallusers } = require('../../controller/AuthController')
+const { addnotice, updateadminnotice, viewadminnotice, deletenotice } = require('../../controller/noticecontroller')
+const { addcertificates, viewadmincertificate, deletecertificate, updatecertificate } = require('../../controller/certificatecontroller')
+const { viewadminmembershiptransactions } = require('../../controller/MembershipController')
+const { viewadmindonationstransactions } = require('../../controller/donationcontroller')
 dotenv.config({ debug: false, quiet: true });
 
 let storage = multer.diskStorage({
@@ -20,7 +25,7 @@ let storage = multer.diskStorage({
         cb(null, 'uploads')
     },
     filename: function (req, file, cb) {
-        if (file.mimetype == 'image/png' || file.mimetype == 'image/jpg' || file.mimetype == 'image/jpeg') {
+        if (file.mimetype == 'image/png' || file.mimetype == 'image/jpg' || file.mimetype == 'image/jpeg' || file.mimetype == 'application/pdf') {
             const uniquesuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
             const extension = path.extname(file.originalname);
             const filename = 'file' + uniquesuffix + extension;
@@ -35,7 +40,7 @@ let storage = multer.diskStorage({
 })
 
 
-const upload = multer({ storage: storage }).any(['Home_Banner_Image', 'Home_About_Image', 'Home_Management_Profile_Picture', 'Home_Team_Profile_Picture', 'Home_Goals_Card_Icon', 'About_Image', 'About_Banner_Image', 'Gallery_Banner_Image', 'News_Banner_Image', 'Contact_Banner_Image', 'Terms_Image', 'Privacy_Image'])
+const upload = multer({ storage: storage }).any(['Home_Banner_Image', 'Home_About_Image', 'Home_Management_Profile_Picture', 'Home_Team_Profile_Picture', 'Home_Goals_Card_Icon', 'About_Image', 'About_Banner_Image', 'Gallery_Banner_Image', 'News_Banner_Image', 'Contact_Banner_Image', 'Terms_Image', 'Privacy_Image', 'Certificate_File'])
 
 
 let verifytoken = (req, res, next) => {
@@ -66,6 +71,17 @@ let verifytoken = (req, res, next) => {
 
 let adminsession = (req, res, next) => {
     if (!req.session.user) {
+        return res.send({
+            Status: 0,
+            Message: "Unauthorized User"
+        });
+    }
+    next();
+};
+
+
+let webadminsession = (req, res, next) => {
+    if (!req.session.admin) {
         return res.send({
             Status: 0,
             Message: "Unauthorized User"
@@ -196,10 +212,6 @@ adminroutes.post('/add-contact-banner', verifytoken, adminsession, upload, addco
 adminroutes.get('/view-contact-banner', viewcontactbannercontroller)
 adminroutes.put('/update-contact-banner', verifytoken, adminsession, upload, updatecontactbannercontroller)
 
-adminroutes.post('/send-query', upload, AddQueriescontroller)
-adminroutes.get('/view-query', verifytoken, adminsession, upload, ViewQueriescontroller)
-adminroutes.delete('/delete-query', verifytoken, adminsession, upload, deletequeries)
-
 // terms & conditions 
 adminroutes.post('/add-terms-banner-section', verifytoken, adminsession, upload, addtermsbannercontroller)
 adminroutes.get('/view-terms-banner-section', viewtermsbannercontroller)
@@ -241,5 +253,28 @@ adminroutes.get('/view-privacy-extra-paragraph', viewprivacyextraparagraphcontro
 adminroutes.put('/update-privacy-extra-paragraph', verifytoken, adminsession, upload, updateprivacyextraparagraphcontroller)
 adminroutes.delete('/delete-privacy-extra-paragraph', verifytoken, adminsession, upload, deleteprivacyextraparagraphcontroller)
 
+// website admin  panel routes 
+adminroutes.post('/web-admin-login', webadminlogin)
+adminroutes.post('/check-web-admin-session', checkwebadminsession)
+adminroutes.post('/web-admin-logout', verifytoken, webadminsession, upload, webadminlogout)
+
+adminroutes.post('/send-query', upload, AddQueriescontroller)
+adminroutes.get('/view-query', verifytoken, webadminsession, upload, ViewQueriescontroller)
+adminroutes.delete('/delete-query', verifytoken, webadminsession, upload, deletequeries)
+
+adminroutes.get('/view-users', verifytoken, webadminsession, upload, viewallusers)
+
+adminroutes.post('/add-notice', verifytoken, webadminsession, upload, addnotice)
+adminroutes.get('/view-notice', verifytoken, webadminsession, upload, viewadminnotice)
+adminroutes.put('/update-notice', verifytoken, webadminsession, upload, updateadminnotice)
+adminroutes.delete('/delete-notice', verifytoken, webadminsession, upload, deletenotice)
+
+adminroutes.post('/add-certificates', verifytoken, webadminsession, upload, addcertificates)
+adminroutes.get('/view-certificates', verifytoken, webadminsession, upload, viewadmincertificate)
+adminroutes.put('/update-certificates', verifytoken, webadminsession, upload, updatecertificate)
+adminroutes.delete('/delete-certificate', verifytoken, webadminsession, upload, deletecertificate)
+
+adminroutes.get('/view-all-membership-transactions', verifytoken, webadminsession, upload, viewadminmembershiptransactions)
+adminroutes.get('/view-all-donations', verifytoken, webadminsession, upload, viewadmindonationstransactions)
 
 module.exports = adminroutes

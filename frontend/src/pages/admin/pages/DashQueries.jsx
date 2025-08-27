@@ -5,6 +5,8 @@ import { FaQuestion, FaXmark } from 'react-icons/fa6'
 import { apiurl, getCookie } from '../../../apiurl/Apiurl'
 import toast from 'react-hot-toast'
 import { RiDeleteBinLine } from 'react-icons/ri'
+import { WebAdminSidebar } from '../../../common/WebAdminSidebar'
+import { WebAdminHeader } from '../../../common/WebAdminHeader'
 
 
 
@@ -96,9 +98,9 @@ export function DashQueries() {
             }
 
             <section className='w-[100%] h-[100vh]  bg-[#d7d7d76b] flex'>
-                <AdminSidebar />
+                <WebAdminSidebar />
                 <section className='w-[100%] h-[100%]'>
-                    <AdminHeader />
+                    <WebAdminHeader />
 
                     <section className='w-[100%] h-[calc(100vh-66px)] overflow-y-scroll p-2 px-[20px]'>
                         <section className='w-[100%] px-3'>
