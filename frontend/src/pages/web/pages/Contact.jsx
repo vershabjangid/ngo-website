@@ -9,6 +9,7 @@ import toast, { Toaster } from 'react-hot-toast'
 import * as Yup from 'yup'
 import { useFormik } from 'formik'
 import { QuickLinks } from './QuickLinks'
+import { FaChevronRight } from 'react-icons/fa6'
 export function Contact() {
     let [contactbannerdata, setcontactbannerdata] = useState([])
     let [imageurl, setimageurl] = useState([])
@@ -115,15 +116,15 @@ export function Contact() {
                         null :
                         contactbannerdata.map((items, index) => {
                             return (
-                                <section key={items} className='about_banner_slides w-[100%] h-[100vh] relative' style={{ background: `url(${imageurl + items.Contact_Banner_Image})`, backgroundSize: "cover" }}>
+                                <section key={items} className='about_banner_slides w-[100%] h-[400px] relative' style={{ background: `url(${imageurl + items.Contact_Banner_Image})`, backgroundSize: "cover" }}>
                                     <FixedOptionHeader />
                                     <section className='bg-[#00000088] w-[100%] h-[100%] flex justify-center items-center'>
                                         <section className='w-[100%] text-center p-3'>.
-                                            <section className='w-[120px] m-auto'>
+                                            <section className='w-[200px] mb-4 m-auto'>
                                                 <Logo />
                                             </section>
-                                            <p className='text-white text-[30px] font-[700]'>{items.Contact_Banner_Heading}</p>
-                                            <p className='text-white text-[18px]'>{items.Contact_Banner_Description}</p>
+                                            <p className='text-white text-[30px] font-[700]'>Contact Us</p>
+                                            <p className='text-white text-[18px] flex items-center justify-center'>Home <span className='text-[14px] mx-1'> <FaChevronRight /></span><span className='flex items-center text-[#1385ff]'>  Contact Us</span>  </p>
                                         </section>
                                     </section>
                                 </section>
@@ -131,38 +132,54 @@ export function Contact() {
                         })
                 }
 
-                 <QuickLinks />
 
-                <section className='w-[100%] py-[20px] px-[10px]'>
-                    <section className='contact_section w-[100%] flex justify-between'>
-                        <section className='w-[48%]'>
-                            <section className='w-[130px] m-auto'>
-                                <Logo />
-                                <p className=' text-center font-[700] text-[30px]'>RCMICCI</p>
-                            </section>
-                            <section className='my-[25px] text-[16px] font-[500]'>
-                                <p>If you have questions about our projects, ideas for collaboration, or want to know how you can make a difference, we’re here to help. Our team is ready to provide information, guide you through ways to get involved, and listen to your thoughts and feedback.</p>
+
+
+
+
+                <section className='mt-2 w-[100%] '>
+                    <section className="w-[100%] flex items-center justify-center py-5">
+                        <div  className='donation_form_section w-[80%] border-[5px] border-[#ffffff] m-auto overflow-hidden rounded-[20px] flex' >
+                            <section className='p-3 bg-[#ffffff82] backdrop-blur-[2] w-[50%]'>
+                                <section className='w-[100%] mt-3'>
+                                    <section className='w-[200px] mb-4'>
+                                        <Logo />
+                                    </section>
+                                    <section className='my-[25px] text-[16px] font-[500]'>
+                                        <p>If you have questions about our projects, ideas for collaboration, or want to know how you can make a difference, we’re here to help. Our team is ready to provide information, guide you through ways to get involved, and listen to your thoughts and feedback.</p>
+                                    </section>
+
+
+                                    <div>
+                                        <p className='font-[600] text-[25px]'>Contact information</p>
+                                        <div className='heading_hoverline border-b-[3px] border-[#1385ff] mt-1 mb-5'></div>
+                                    </div>
+
+                                    <section className=''>
+                                        <ContactInfo />
+                                    </section>
+
+                                </section>
                             </section>
 
-                            <section className='my-[15px] text-[16px] font-[500]'>
-                                <ContactInfo />
-                            </section>
-                        </section>
-                        <section className='w-[48%]'>
-                            <p className=' font-[700] text-[25px]'>
-                                Contact Us
-                            </p>
-                            <section className=''>
+                            <section className='p-3 bg-[#ffffff82] backdrop-blur-[2] w-[50%]'>
+                                <div>
+                                    <p className=' font-[700] text-[25px]'>
+                                        Get in touch
+                                    </p>
+                                    <div className='heading_hoverline border-b-[3px] border-[#1385ff] mt-1 mb-5'></div>
+                                </div>
+
                                 <form onSubmit={formik.handleSubmit}>
                                     {
                                         inputname.map((items, index) => {
                                             return (
                                                 <div key={index} className='mb-[10px]'>
-                                                    <label className='font-[600]'>{inputlabel[index]}</label>
+                                                    <label className='font-[600] text-[#1385ff]'>{inputlabel[index]}</label>
                                                     {
                                                         inputtype[index] !== "message" ?
-                                                            <input type={inputtype[index]} name={items} className='border-[2px] mt-1 border-[#000000] w-[100%] p-2 rounded-[10px] ' onChange={(e) => formik.setFieldValue(inputname[index], e.target.value)} /> :
-                                                            <textarea name={items} className='border-[2px] h-[200px] mt-1 border-[#000000] w-[100%] p-2 rounded-[10px] ' onChange={(e) => formik.setFieldValue(inputname[index], e.target.value)} />
+                                                            <input type={inputtype[index]} name={items} className='border-[2px] mt-1 border-[#1385ff] w-[100%] p-2 rounded-[10px] ' onChange={(e) => formik.setFieldValue(inputname[index], e.target.value)} /> :
+                                                            <textarea name={items} className='border-[2px] h-[200px] mt-1 border-[#1385ff] w-[100%] p-2 rounded-[10px] ' onChange={(e) => formik.setFieldValue(inputname[index], e.target.value)} />
                                                     }
 
                                                 </div>
@@ -170,13 +187,23 @@ export function Contact() {
                                         })
                                     }
 
-                                    <button className='bg-[black] text-[white] font-[600] w-[100%] py-3 rounded-[10px]'>Submit</button>
+                                    <button className='bg-[#1385ff] text-[white] font-[600] w-[100%] py-3 rounded-[10px]'>Submit</button>
 
                                 </form>
+
                             </section>
-                        </section>
+                        </div>
                     </section>
+
                 </section>
+
+
+
+
+
+
+
+                <QuickLinks />
                 <Footer />
             </section >
             <Toaster />

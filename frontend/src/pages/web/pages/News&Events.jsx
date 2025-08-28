@@ -5,6 +5,7 @@ import { apiurl } from '../../../apiurl/Apiurl'
 import { Logo } from '../../../common/Logo'
 import { FixedOptionHeader } from '../../../common/FixedOptionHeader'
 import { QuickLinks } from './QuickLinks'
+import { FaChevronRight } from 'react-icons/fa6'
 
 export function NewsEvents() {
     let [newsbannerdata, setnewsbannerdata] = useState([])
@@ -58,15 +59,15 @@ export function NewsEvents() {
                         null :
                         newsbannerdata.map((items, index) => {
                             return (
-                                <section key={items} className='about_banner_slides w-[100%] h-[100vh] relative' style={{ background: `url(${imageurl + items.News_Banner_Image})`, backgroundSize: "cover" }}>
+                                <section key={items} className='about_banner_slides w-[100%] h-[400px] relative' style={{ background: `url(${imageurl + items.News_Banner_Image})`, backgroundSize: "cover", backgroundPosition: "center" }}>
                                     <FixedOptionHeader />
                                     <section className='bg-[#00000088] w-[100%] h-[100%] flex justify-center items-center'>
                                         <section className='w-[100%] text-center p-3'>.
-                                            <section className='w-[120px] m-auto'>
+                                            <section className='w-[200px] mb-4 m-auto'>
                                                 <Logo />
                                             </section>
                                             <p className='text-white text-[30px] font-[700]'>{items.News_Banner_Heading}</p>
-                                            <p className='text-white text-[18px]'>{items.News_Banner_Description}</p>
+                                            <p className='text-white text-[18px] flex items-center justify-center'>Home <span className='text-[14px] mx-1'> <FaChevronRight /></span><span className='flex items-center text-[#1385ff]'>  News & Events</span>  </p>
                                         </section>
                                     </section>
                                 </section>
@@ -74,82 +75,69 @@ export function NewsEvents() {
                         })
                 }
 
-                <section className='w-[100%] py-[20px] px-[10px]'>
-                    <section className='w-[100%] mb-[20px] uppercase text-center'>
-                        <h1 className='text-[30px] font-[700]'>News & Events</h1>
-                    </section>
-                    {
-                        newsparagraph.length === 0 ? null
-                            :
-                            newsparagraph.map((items, index) => {
+
+                {
+
+                    newsbannerdata === null || newsparagraph.length === 0 ?
+                        null :
+                        <section className=' w-[100%] py-[20px] px-[20px] border-b-[1px] border-[black] '>
+                            {newsbannerdata.map((items, index) => {
                                 return (
-                                    <section key={index}>
-                                        <section className='w-[100%] flex justify-between py-[50px] border-b-[1px] border-[black]'>
-                                            {
-                                                items.About_Image === null ?
-                                                    <section className='w-[100%] border-[1px] border-[grey]'>
-                                                        <p className='text-[25px] font-[600] capitalize mb-[5px]'>{items.News_Heading}</p>
-                                                        <p>
-                                                            {items.News_Description}
-                                                        </p>
-                                                    </section>
-                                                    :
-
-                                                    index % 2 === 0 ?
-                                                        <section className='about_content_left w-[100%] flex justify-between'>
-                                                            <section className=' w-[400px]'>
-                                                                <img src={imageurl + items.News_Image} alt="" className='w-[100%] rounded-[10px]' />
-                                                            </section>
-                                                            <section className='w-[calc(100%-420px)]'>
-                                                                <p className='text-[25px] font-[600] capitalize my-[5px]'>{items.News_Heading}</p>
-                                                                <p style={{ whiteSpace: "pre-wrap", }}>
-                                                                    {items.News_Description}
-                                                                </p>
-                                                                {
-                                                                    items.News_Additional_Links !== "" ?
-                                                                        <div>
-                                                                            <button className='w-[180px] h-[50px] rounded-[30px] font-[600] border-[1px] bg-[black] text-white mt-[20px]' >
-                                                                                <a className='w-[100%] h-[100%]' href={items.News_Additional_Links}>Additional Links</a>
-                                                                            </button>
-                                                                        </div> :
-                                                                        null
-                                                                }
-
-                                                            </section>
-                                                        </section>
-                                                        :
-                                                        <section className='about_content_right w-[100%] flex justify-between'>
-                                                            <section className='w-[calc(100%-420px)] text-end'>
-                                                                <p className='text-[25px] font-[600] capitalize my-[5px]'>{items.News_Heading}</p>
-                                                                <p style={{ whiteSpace: "pre-wrap", }}>
-                                                                    {items.News_Description}
-                                                                </p>
-                                                                {
-                                                                    items.News_Additional_Links !== "" ?
-                                                                        <div>
-                                                                            <button className='w-[180px] h-[50px] rounded-[30px] font-[600] border-[1px] bg-[black] text-white mt-[20px]' >
-                                                                                <a className='w-[100%] h-[100%]' href={items.News_Additional_Links}>Additional Links</a>
-                                                                            </button>
-                                                                        </div> :
-                                                                        null
-                                                                }
-
-                                                            </section>
-                                                            <section className=' w-[400px]'>
-                                                                <img src={imageurl + items.News_Image} alt="" className='w-[100%] rounded-[10px]' />
-                                                            </section>
-                                                        </section>
-
-                                            }
-
-
-                                        </section>
+                                    <section key={index} className='w-[100%] text-center'>
+                                        <h2 className='home_heading capitalize text-[30px] font-[700] '>
+                                            {items.News_Banner_Heading}
+                                        </h2>
+                                            <div className='heading_hoverline border-b-[3px] border-[#1385ff] m-auto mt-1 '></div>
+                                        <p className='text-justify capitalize  my-[20px] mb-[20px] leading-[25px] text-[16px]'>
+                                            {items.News_Banner_Description}
+                                        </p>
                                     </section>
                                 )
-                            })
-                    }
-                     <QuickLinks />
-                </section>
+                            })}
+
+                        </section>
+                }
+
+
+
+                {
+                    newsparagraph.length === 0 ? null
+                        :
+                        newsparagraph.map((items, index) => {
+                            return (
+                                <section key={index} className='mt-4 w-[100%] '>
+                                    <section className="w-[100%] bg-[#ffffff95] backdrop-blur-[20px] rounded-[20px] flex items-center justify-center">
+                                        <section className='about_inner_section w-[100%] border-[1px] border-[#ffffff] m-auto overflow-hidden rounded-[20px] flex justify-between p-3' >
+                                            <section className='backdrop-blur-[2] w-[350px] h-[350px]'>
+                                                <img src={imageurl + items.News_Image} alt="" className='h-[100%] rounded-[20px]' />
+                                            </section>
+
+                                            <section className='p-3 backdrop-blur-[2] w-[calc(100%-370px)]'>
+                                                <section className=' capitalize text-[25px] font-[700] text-[#000000]'>
+                                                    {items.News_Heading}
+                                                    <div className='heading_hoverline border-b-[3px] border-[#1385ff] mt-2 w-[auto]'></div>
+                                                </section>
+
+                                                <section>
+                                                    <p className='mt-5 text-[16px] font-[500]  capitalize whitespace-pre-wrap'>
+                                                        {items.News_Description}
+                                                    </p>
+                                                </section>
+                                                {
+                                                    items.News_Additional_Links !== undefined ?
+                                                        <section className='mt-5'>
+                                                            <a href={items.News_Additional_Links} className='bg-[#1385ff] text-white p-3 rounded-[20px]'>Additional Links</a>
+                                                        </section> :
+                                                        null
+                                                }
+                                            </section>
+                                        </section>
+                                    </section>
+                                </section>
+                            )
+                        })
+                }
+
                 <Footer />
             </section >
         </>

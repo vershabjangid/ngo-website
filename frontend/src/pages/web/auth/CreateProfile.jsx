@@ -105,7 +105,7 @@ export function CreateProfile() {
                 <section className='login_right w-[50%] h-[100%] bg-white flex justify-center items-center flex-col overflow-y-scroll pb-4'>
                     <div className='w-[80%] h-[100%]'>
                         <div className='w-[100%]'>
-                            <section className='w-[160px] mb-4  m-auto'>
+                            <section className='w-[200px] mb-4  m-auto'>
                                 <Logo />
                             </section>
                             <section className='register_right_heading_section'>

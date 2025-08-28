@@ -315,14 +315,14 @@ export function Header() {
                                 <section className='megamenu hidden fixed right-0 top-[0%]  w-[300px] h-[100vh] overflow-y-scroll bg-[black] z-[99999]'>
                                     <section className='text-white flex items-center  p-2 px-3 justify-between border-b-[1px]'>
                                         <section className='flex items-center'>
-                                            <section className='Logo_section w-[80px] '>
+                                            <section className='Logo_section w-[200px] '>
                                                 <Logo />
                                             </section>
 
-                                            <section className='ms-2 text-white'>
+                                            {/* <section className='ms-2 text-white'>
                                                 <p className='megamenu_heading text-[30px] font-[600]'>RESERVE CATEGORY & MINORITY</p>
                                                 <p className='megamenu_sub_heading'>INDIAN CHAMBER OF COMMERCE & INDUSTRY</p>
-                                            </section>
+                                            </section> */}
                                         </section>
 
                                         <section className='text-[25px]' onClick={() => setsidebar(false)}><FaXmark /></section>

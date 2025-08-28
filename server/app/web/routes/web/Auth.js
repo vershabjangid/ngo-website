@@ -8,7 +8,7 @@ const { websiteregister, verifyregister, resendotp, createprofilecontroller, log
 const { viewnotices } = require('../../controller/noticecontroller')
 const { viewcertificates } = require('../../controller/certificatecontroller')
 const { generatemembershipoderid, getpayments, verifymembershippayment, viewmembershipstatus, viewallmembershiptransactions } = require('../../controller/MembershipController')
-const { generatedonationorderid, viewfydonationpayment, viewalldonationstransactions } = require('../../controller/donationcontroller')
+const { generatedonationorderid, viewfydonationpayment, viewalldonationstransactions, generateindividualdonationorderid, verifyindividualdonationpayment } = require('../../controller/donationcontroller')
 dotenv.config({ debug: false, quiet: true });
 
 
@@ -82,6 +82,10 @@ websiteroutes.post('/create-profile', websitesession, verifytoken, upload, creat
 websiteroutes.get('/view-notice', verifytoken, websitesession, upload, viewnotices)
 websiteroutes.get('/view-certificates', verifytoken, websitesession, upload, viewcertificates)
 websiteroutes.post('/membership-order-id', verifytoken, websitesession, upload, generatemembershipoderid)
+
+websiteroutes.post('/donation-now', upload, generateindividualdonationorderid)
+websiteroutes.post('/verify-donate-now',upload, verifyindividualdonationpayment)
+
 websiteroutes.post('/donation-order-id', verifytoken, websitesession, upload, generatedonationorderid)
 
 websiteroutes.post('/verify-membership', verifytoken, websitesession, upload, verifymembershippayment)

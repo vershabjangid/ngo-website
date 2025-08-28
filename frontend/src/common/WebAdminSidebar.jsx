@@ -11,14 +11,14 @@ export function WebAdminSidebar() {
     return (
         <section className='admin_sidebar w-[300px] h-[100%] px-2 overflow-y-scroll bg-[white]'>
             <div className='flex  items-center my-3'>
-                <div className='w-[60px]'>
+                <div className='w-[200px]'>
                     <Logo />
                 </div>
 
-                <div className='ms-2'>
+                {/* <div className='ms-2'>
                     <p className='text-[10px] font-[600]'>RESERVE CATEGORY & MINORITY</p>
                     <p className='text-[8px]'>INDIAN CHAMBER OF COMMERCE & INDUSTRY</p>
-                </div>
+                </div> */}
             </div>
             {/* <Link to={"/dashboard"} className='admin_side_options w-[100%] rounded-[20px] font-[600]  flex items-center p-3'>
                 <LuLayoutDashboard className='me-2 text-[20px]' /> Dashboard

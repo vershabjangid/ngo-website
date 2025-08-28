@@ -76,7 +76,7 @@ export function ChangePassword() {
                 <section className='login_right w-[50%] h-[100%] bg-white flex justify-center items-center flex-col overflow-y-scroll pb-4'>
                     <div className='w-[90%]'>
                         <div className='w-[100%]'>
-                            <div className='w-[160px] m-auto'>
+                            <div className='w-[200px] m-auto mb-4'>
                                 <Logo />
                             </div>
                             <h1 className='text-[30px] font-[600] text-center'>New Password</h1>

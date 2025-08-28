@@ -18,7 +18,7 @@ export function QuickLinks() {
                         <section className='mb-[10px] text-right '>
                             <ul>
                                 <li className=''>
-                                    <Link to={"/id-card"} className='flex justify-end items-center text-[#ffbe25] text-[18px] font-[600] mb-2 '>
+                                    <Link to={"/id-card"} className='flex justify-end items-center text-[#1385ff] text-[18px] font-[600] mb-2 '>
                                         ID Card
                                         <div className='w-[40px] h-[40px] rounded-[50%] bg-[white] ms-2'>
                                             <img src={idcard} alt="" />
@@ -27,7 +27,7 @@ export function QuickLinks() {
                                 </li>
 
                                 <li className=''>
-                                    <Link to={"/appointment-letter"} className='flex justify-end items-center text-[#ffbe25] text-[18px] font-[600] mb-2'>
+                                    <Link to={"/appointment-letter"} className='flex justify-end items-center text-[#1385ff] text-[18px] font-[600] mb-2'>
                                         Appointment Letter
                                         <div className='w-[40px] h-[40px] rounded-[50%] bg-[white] ms-2'>
                                             <img src={appointment} alt="" />
@@ -36,7 +36,7 @@ export function QuickLinks() {
                                 </li>
 
                                 <li className=''>
-                                    <Link to={"/certificate"} className='flex justify-end items-center text-[#ffbe25] text-[18px] font-[600] mb-2'>
+                                    <Link to={"/certificate"} className='flex justify-end items-center text-[#1385ff] text-[18px] font-[600] mb-2'>
                                         Certificate
                                         <div className='w-[40px] h-[40px] rounded-[50%] bg-[white] ms-2'>
                                             <img src={certificate} alt="" />
@@ -45,7 +45,7 @@ export function QuickLinks() {
                                 </li>
 
                                 <li className=''>
-                                    <Link to={"/donate-us"} className='flex justify-end items-center text-[#ffbe25] text-[18px] font-[600] mb-2'>
+                                    <Link to={"/donate-us"} className='flex justify-end items-center text-[#1385ff] text-[18px] font-[600] mb-2'>
                                         Donate
                                         <div className='w-[40px] h-[40px] rounded-[50%] bg-[white] ms-2'>
                                             <img src={donate} alt="" />
@@ -68,7 +68,7 @@ export function QuickLinks() {
                 <section className='w-[100%]'>
                     <ul className='flex justify-evenly w-[100%]'>
                         <li className=''>
-                            <Link to={"/id-card"} className='flex justify-end items-center text-[#ffbe25] text-[18px] font-[600] mb-2 '>
+                            <Link to={"/id-card"} className='flex justify-end items-center text-[#1385ff] text-[18px] font-[600] mb-2 '>
                                 <div className='w-[40px] h-[40px]  rounded-[50%] bg-[white]'>
                                     <img src={idcard} alt="" />
                                 </div>
@@ -76,7 +76,7 @@ export function QuickLinks() {
                         </li>
 
                         <li className=''>
-                            <Link to={"/appointment-letter"} className='flex justify-end items-center text-[#ffbe25] text-[18px] font-[600] mb-2'>
+                            <Link to={"/appointment-letter"} className='flex justify-end items-center text-[#1385ff] text-[18px] font-[600] mb-2'>
                                 <div className='w-[40px] h-[40px] rounded-[50%] bg-[white]'>
                                     <img src={appointment} alt="" />
                                 </div>
@@ -84,7 +84,7 @@ export function QuickLinks() {
                         </li>
 
                         <li className=''>
-                            <Link to={"/certificates"} className='flex justify-end items-center text-[#ffbe25] text-[18px] font-[600] mb-2'>
+                            <Link to={"/certificates"} className='flex justify-end items-center text-[#1385ff] text-[18px] font-[600] mb-2'>
                                 <div className='w-[40px] h-[40px] rounded-[50%] bg-[white]'>
                                     <img src={certificate} alt="" />
                                 </div>
@@ -92,7 +92,7 @@ export function QuickLinks() {
                         </li>
 
                         <li className=''>
-                            <Link to={"/donate-us"} className='flex justify-end items-center text-[#ffbe25] text-[18px] font-[600] mb-2'>
+                            <Link to={"/donate-us"} className='flex justify-end items-center text-[#1385ff] text-[18px] font-[600] mb-2'>
                                 <div className='w-[40px] h-[40px] rounded-[50%] bg-[white]'>
                                     <img src={donate} alt="" />
                                 </div>
@@ -100,7 +100,7 @@ export function QuickLinks() {
                         </li>
 
                         <li className=''>
-                            <Link to={"/profile"} className='flex justify-end items-center text-[#ffbe25] text-[18px] font-[600] mb-2'>
+                            <Link to={"/profile"} className='flex justify-end items-center text-[#1385ff] text-[18px] font-[600] mb-2'>
                                 <div className='w-[40px] h-[40px] rounded-[50%] bg-[white]'>
                                     <img src={profile} alt="" />
                                 </div>

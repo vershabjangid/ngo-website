@@ -9,11 +9,15 @@ import { ContactInfo } from './ContactInfo'
 export function Footer() {
     return (
         <>
-            <footer className='w-[100%] p-[20px] py-[40px] bg-[black] text-white uppercase flex justify-between flex-wrap'>
-                <section className='flex justify-center items-center flex-col'>
-                    <section className='w-[130px]'>
-                        <Logo />
+            <footer className='w-[100%] p-[20px] py-[40px] bg-[black] text-white flex justify-between flex-wrap'>
+                <section className='flex justify-center  flex-col'>
+                    <section className='w-[250px]'>
+                        <section className='w-[200px]'>
+                            <Logo />
+                        </section>
+                        <p className='text-[14px] w-[100%] decoration-none mt-5 p-0'>Creating sustainable change in communities worldwide through education, healthcare, clean water access, and disaster relief programs.</p>
                     </section>
+
                     <p className='mt-[20px] text-[20px]'>Follow US ON</p>
                     <section className='mt-[10px]'>
                         <section className='flex'>
@@ -51,12 +55,12 @@ export function Footer() {
                             </Link>
 
                             <Link to={"/about"} className='flex mb-[10px]'>
-                                <MdKeyboardArrowRight className='text-[25px]' /> About US
+                                <MdKeyboardArrowRight className='text-[25px]' /> About Us
                             </Link>
 
 
                             <Link to={"/contact-us"} className='flex mb-[10px]'>
-                                <MdKeyboardArrowRight className='text-[25px]' /> Contact US
+                                <MdKeyboardArrowRight className='text-[25px]' /> Contact Us
                             </Link>
 
 
@@ -88,28 +92,30 @@ export function Footer() {
                     <p className='text-[20px] font-[600]'>Quick Links</p>
                     <section className='mt-[10px]'>
                         <section className=''>
-                            <Link to={"/"} className='flex mb-[10px]'>
+                            <Link to={"/id-card"} className='flex mb-[10px]'>
                                 <MdKeyboardArrowRight className='text-[25px]' /> ID Card
                             </Link>
 
-                            <Link to={"/contact-us"} className='flex mb-[10px]'>
+                            <Link to={"/certificates"} className='flex mb-[10px]'>
                                 <MdKeyboardArrowRight className='text-[25px]' /> Certificates
                             </Link>
 
 
-                            <Link to={"/about"} className='flex mb-[10px]'>
+                            <Link to={"/appointment-letter"} className='flex mb-[10px]'>
                                 <MdKeyboardArrowRight className='text-[25px]' /> Appointment Letter
                             </Link>
 
 
 
 
-                            <Link to={"/gallery"} className='flex mb-[10px]'>
+                            <Link to={"/donate-us"} className='flex mb-[10px]'>
                                 <MdKeyboardArrowRight className='text-[25px]' /> Donate Us
                             </Link>
 
                         </section>
+
                     </section>
+
                 </section>
 
 
@@ -124,6 +130,9 @@ export function Footer() {
 
 
             </footer>
+            <section className='w-[100%] bg-[black] text-white py-3 border-t-[1px] text-center'>
+                <p>Developed by <a href="https://secureworldtech.com/" className='border-b-[1px]'>SecureworldTech</a></p>
+            </section>
         </>
     )
 }

@@ -138,7 +138,7 @@ export function DashViewNews() {
                                             <label htmlFor="homebannerdescription">
                                                 News Description
                                             </label>
-                                            <input id='homebannerdescription' defaultValue={updatemodaldata.News_Description} type="text" className='w-[100%] p-[10px] border-[1px] border-[grey] text-[grey] mt-1 rounded-[25px]' onChange={(e) => formik.setFieldValue('News_Description', e.target.value)} />
+                                            <textarea id='homebannerdescription' defaultValue={updatemodaldata.News_Description} type="text" className='w-[100%] p-[10px] border-[1px] border-[grey] text-[grey] mt-1 rounded-[25px]' onChange={(e) => formik.setFieldValue('News_Description', e.target.value)} />
                                         </div>
                                     </div>
 

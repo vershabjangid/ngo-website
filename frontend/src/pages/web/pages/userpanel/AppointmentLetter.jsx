@@ -8,11 +8,22 @@ import { Logo } from '../../../../common/Logo';
 import { FaPhoneAlt } from 'react-icons/fa';
 import { GrCopy } from 'react-icons/gr';
 import DateFormat from '../../../../common/DateFormat';
+import { useNavigate } from 'react-router-dom';
 
 export function AppointmentLetter() {
     let { user } = useContext(UserContext)
     const contentRef = useRef(null);
     const reactToPrintFn = useReactToPrint({ contentRef });
+
+    let navigate = useNavigate()
+    setTimeout(() => {
+        if (user[0] === undefined || user[0].User_ID === undefined) {
+            navigate('/membership')
+        }
+        else {
+            return null
+        }
+    }, 5000)
     return (
         <>
             <section className='w-[100%] h-[100vh] border-[1px] border-[red] bg-[#f3f1f1]'>
@@ -32,9 +43,12 @@ export function AppointmentLetter() {
                             </div>
                         </section>
 
-                        <section className='text-black w-[100%] flex justify-center h-auto my-[10px]'>
-                            <button className='text-[16px] py-3 px-3 rounded-[10px] border-[1px] bg-[#1385ff] text-white flex items-center' onClick={reactToPrintFn}><FaDownload className='me-2' /> DOWNLOAD AND PRINT</button>
-                        </section>
+                        {
+                            user[0] === undefined || user[0].Address === undefined ? null :
+                                <section className='text-black w-[100%] flex justify-center h-auto my-[10px]'>
+                                    <button className='text-[16px] py-3 px-3 rounded-[10px] border-[1px] bg-[#1385ff] text-white flex items-center' onClick={reactToPrintFn}><FaDownload className='me-2' /> DOWNLOAD AND PRINT</button>
+                                </section>
+                        }
 
                         <section className='mt-[30px] flex justify-evenly flex-wrap py-2 ' ref={contentRef}>
                             <section className=' w-[99%] rounded-[10px] bg-[white]  pt-2 mt-[10px]'>

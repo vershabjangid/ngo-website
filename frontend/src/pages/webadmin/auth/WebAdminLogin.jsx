@@ -53,7 +53,7 @@ export function WebAdminLogin() {
         <>
             <section className='w-[100%] h-[100vh] border-[1px] border-[black] bg-[#ffffff] flex justify-center items-center'>
                 <section className='w-[400px] border-[1px] border-[black] p-[10px] rounded-[10px]'>
-                    <div className='w-[100px] m-auto'>
+                    <div className='w-[200px] mb-4  m-auto'>
                         <Logo />
                     </div>
                     <div className='text-center mb-[20px]'>
