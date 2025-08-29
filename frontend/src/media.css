@@ -318,6 +318,11 @@ width: 100%;
     }
 
 
+    .footer_company_label{
+        padding-top: 30px !important;
+        padding-bottom: 140px !important;
+    }
+
     .donate_now_btn{
         bottom: 75px !important;
     }

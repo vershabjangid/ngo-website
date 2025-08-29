@@ -130,7 +130,7 @@ export function Footer() {
 
 
             </footer>
-            <section className='w-[100%] bg-[black] text-white pb-[100px] pt-5 border-t-[1px] text-center'>
+            <section className='footer_company_label w-[100%] bg-[black] text-white py-3 border-t-[1px] text-center'>
                 <p>Developed by <a href="https://secureworldtech.com/" className='border-b-[1px]'>SecureworldTech</a></p>
             </section>
         </>
