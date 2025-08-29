@@ -339,9 +339,13 @@ export function Header() {
                                                         </div>
                                                         <div className='ms-2'>
                                                             <p>
-                                                                Name
+                                                                {
+                                                                    user[0] === undefined || user[0].Full_Name === undefined ? "No Data Found"
+                                                                        :
+                                                                        user[0].Full_Name
+                                                                }
                                                             </p>
-                                                            <p>User ID</p>
+                                                            <p>{user[0] === undefined || user[0].User_ID === undefined ? "No Data Found" : user[0].User_ID}</p>
                                                         </div>
                                                     </div>
                                                     <div className='w-[100%] px-2 mt-4'>

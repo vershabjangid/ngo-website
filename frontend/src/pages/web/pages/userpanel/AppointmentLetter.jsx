@@ -16,14 +16,7 @@ export function AppointmentLetter() {
     const reactToPrintFn = useReactToPrint({ contentRef });
 
     let navigate = useNavigate()
-    setTimeout(() => {
-        if (user[0] === undefined || user[0].User_ID === undefined) {
-            navigate('/membership')
-        }
-        else {
-            return null
-        }
-    }, 5000)
+   
     return (
         <>
             <section className='w-[100%] h-[100vh] border-[1px] border-[red] bg-[#f3f1f1]'>
