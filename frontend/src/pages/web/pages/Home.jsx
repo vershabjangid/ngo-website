@@ -174,7 +174,7 @@ export function Home() {
                             bannerdata.map((items, ind) => {
                                 return (
                                     <section key={ind} className="Slide_home w-[100%]">
-                                        <section className='w-[100%] h-[100vh]' style={{ backgroundImage: `url(${imgurl + items.Home_Banner_Image})`, backgroundPosition: "center", backgroundSize: 'cover' }}>
+                                        <section className='w-[100%] h-[100vh]' style={{ backgroundImage: `url(${imgurl + items.Home_Banner_Image})`, backgroundSize: 'cover' }}>
                                             <section className='Slide_home_overlay w-[100%] h-[100%] bg-[#0000005f] flex items-center justify-center'>
                                                 <section className='Slider_content_section px-5'>
                                                     <section className='w-[200px] m-auto'>
