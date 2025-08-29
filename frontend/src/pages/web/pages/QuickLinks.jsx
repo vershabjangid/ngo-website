@@ -14,7 +14,7 @@ export function QuickLinks() {
         <>
             {
                 quick ?
-                    <section className='quick_links_btn z-[9999] fixed bottom-[5%] right-[2%] flex flex-col items-end '>
+                    <section className='quick_links_btn z-[99999] fixed bottom-[5%] right-[2%] flex flex-col items-end '>
                         <section className='mb-[10px] text-right '>
                             <ul>
                                 <li className=''>
