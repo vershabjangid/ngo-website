@@ -91,14 +91,14 @@ export function Header() {
                                     {
                                         cookie ?
                                             <section className='relative'>
-                                                <section className='w-[50px] h-[50px] rounded-[50%]' onClick={() => setsidebar(!sidebar)} >
+                                                <section className='w-[50px] h-[50px] rounded-[50%] overflow-hidden border-[1px] border-[grey]' onClick={() => setsidebar(!sidebar)} >
                                                     {
                                                         user[0] === undefined || user[0].Profile_Picture === undefined ?
                                                             <div className='w-[100%] h-[100%] flex justify-center items-end text-[30px] text-[grey]'>
                                                                 <FaUser />
                                                             </div>
                                                             :
-                                                            <img src={user[2] + user[0].Profile_Picture} alt="" className='w-[100%] h-[100%]' />
+                                                            <img src={user[2] + user[0].Profile_Picture} alt="" className='w-[100%] h-[100%] rounded-[50%] ' />
                                                     }
                                                 </section>
                                                 {
