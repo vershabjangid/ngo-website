@@ -92,11 +92,11 @@ export function QuickLinks() {
                         </li>
 
                         <li className=''>
-                            <Link to={"/donate-us"} className='flex justify-end items-center text-[#1385ff] text-[18px] font-[600] mb-2'>
+                            <a href='#donation_section' className='flex justify-end items-center text-[#1385ff] text-[18px] font-[600] mb-2'>
                                 <div className='w-[40px] h-[40px] rounded-[50%] bg-[white]'>
                                     <img src={donate} alt="" />
                                 </div>
-                            </Link>
+                            </a>
                         </li>
 
                         <li className=''>
