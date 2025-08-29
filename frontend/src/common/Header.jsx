@@ -345,7 +345,7 @@ export function Header() {
                                                         </div>
                                                     </div>
                                                     <div className='w-[100%] px-2 mt-4'>
-                                                        <Link className='bg-[white] w-[100%] text-black flex items-center justify-between px-4 py-2 rounded-[100px] font-[500]'>
+                                                        <Link to={"/profile"} className='bg-[white] w-[100%] text-black flex items-center justify-between px-4 py-2 rounded-[100px] font-[500]'>
                                                             Profile
                                                             <CgProfile />
                                                         </Link>
