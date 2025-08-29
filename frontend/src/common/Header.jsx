@@ -3,7 +3,7 @@ import { Logo } from './Logo'
 import { Link } from 'react-router-dom'
 import { LuUserCheck, LuUserPlus } from 'react-icons/lu'
 import { HiOutlineBars3BottomRight } from 'react-icons/hi2'
-import { FaXmark } from 'react-icons/fa6'
+import { FaUser, FaXmark } from 'react-icons/fa6'
 import { apiurl, getCookie } from '../apiurl/Apiurl'
 import { TbDoorExit } from 'react-icons/tb'
 import { CgProfile } from 'react-icons/cg'
@@ -93,9 +93,12 @@ export function Header() {
                                             <section className='relative'>
                                                 <section className='w-[50px] h-[50px] rounded-[50%]' onClick={() => setsidebar(!sidebar)} >
                                                     {
-                                                        user[0] === undefined ? < Logo />
+                                                        user[0] === undefined || user[0].Profile_Picture === undefined ?
+                                                            <div className='w-[100%] h-[100%] flex justify-center items-end text-[30px] text-[grey]'>
+                                                                <FaUser />
+                                                            </div>
                                                             :
-                                                            <img src={user[2] + user[0].Profile_Picture} alt="" className='w-[100%] h-[100%] rounded-[50%]' />
+                                                            <img src={user[2] + user[0].Profile_Picture} alt="" className='w-[100%] h-[100%]' />
                                                     }
                                                 </section>
                                                 {
@@ -110,9 +113,12 @@ export function Header() {
                                                                             <div className='ms-2 text-[14px] flex items-center'>
                                                                                 <div className='w-[50px] h-[50px] rounded-[50%] overflow-hidden'>
                                                                                     {
-                                                                                        user[0] === undefined ? < Logo />
+                                                                                        user[0] === undefined || user[0].Profile_Picture === undefined ?
+                                                                                            <div className='w-[100%] h-[100%] flex justify-center items-end text-[30px] text-[grey]'>
+                                                                                                <FaUser />
+                                                                                            </div>
                                                                                             :
-                                                                                            <img src={user[2] + user[0].Profile_Picture} alt="" className='w-[100%] h-[100%] rounded-[50%]' />
+                                                                                            <img src={user[2] + user[0].Profile_Picture} alt="" className='w-[100%] h-[100%]' />
                                                                                     }
                                                                                 </div>
                                                                                 <div className='ms-2'>
@@ -335,7 +341,14 @@ export function Header() {
                                                 <div className='w-[100%]'>
                                                     <div className='ms-2 text-[14px] flex items-center'>
                                                         <div className='w-[50px] h-[50px] border-[1px] rounded-[50%] overflow-hidden'>
-                                                            <Logo />
+                                                            {
+                                                                user[0] === undefined || user[0].Profile_Picture === undefined ?
+                                                                    <div className='w-[100%] h-[100%] flex justify-center items-end text-[30px] text-[grey]'>
+                                                                        <FaUser />
+                                                                    </div>
+                                                                    :
+                                                                    <img src={user[2] + user[0].Profile_Picture} alt="" className='w-[100%] h-[100%]' />
+                                                            }
                                                         </div>
                                                         <div className='ms-2'>
                                                             <p>
