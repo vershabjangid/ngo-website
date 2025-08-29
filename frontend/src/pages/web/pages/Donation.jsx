@@ -123,7 +123,7 @@ export function Donation() {
 
     return (
         <>
-            <a href='#donation_section' className='donate_now_btn fixed bottom-[100px] z-[99999] right-[2%] font-[600] bg-[#1385ff] text-white py-2 px-[10px] rounded-[20px]'>Donate Now</a>
+            {/* <a href='#donation_section' className='donate_now_btn fixed bottom-[100px] z-[99999] left-[2%] font-[600] bg-[#1385ff] text-white py-2 px-[10px] rounded-[20px]'>Donate Now</a> */}
             <section id='donation_section' className='donation_section w-[100%] py-[20px] px-[10px] border-b-[1px] border-[black] '>
 
                 <section className='w-[100%] text-center'>

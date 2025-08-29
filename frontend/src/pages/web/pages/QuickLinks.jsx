@@ -14,7 +14,7 @@ export function QuickLinks() {
         <>
             {
                 quick ?
-                    <section className='quick_links_btn z-[99999] fixed bottom-[5%] right-[2%] flex flex-col items-end '>
+                    <section className='quick_links_btn z-[999999] fixed bottom-[5%] right-[2%] flex flex-col items-end '>
                         <section className='mb-[10px] text-right '>
                             <ul>
                                 <li className=''>
@@ -45,16 +45,16 @@ export function QuickLinks() {
                                 </li>
 
                                 <li className=''>
-                                    <Link to={"/donate-us"} className='flex justify-end items-center text-[#1385ff] text-[18px] font-[600] mb-2'>
+                                    <a href='#donation_section' className='flex justify-end items-center text-[#1385ff] text-[18px] font-[600] mb-2'>
                                         Donate
                                         <div className='w-[40px] h-[40px] rounded-[50%] bg-[white] ms-2'>
                                             <img src={donate} alt="" />
                                         </div>
-                                    </Link>
+                                    </a>
                                 </li>
                             </ul>
                         </section>
-                        <section className=' w-[150px] z-[9999] bg-[white] rounded-[50px] p-[10px] flex justify-between items-center cursor-pointer border-[2px] border-[black]' onClick={() => setquick(false)}>
+                        <section className=' w-[150px] z-[99999] bg-[white] rounded-[50px] p-[10px] flex justify-between items-center cursor-pointer border-[2px] border-[black]' onClick={() => setquick(false)}>
                             <p className='text-center text-[20px] font-[600]'>Close  </p><FaRegCircleXmark className='text-[30px]' />
                         </section>
                     </section>
