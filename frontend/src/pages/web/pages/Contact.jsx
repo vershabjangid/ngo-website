@@ -116,7 +116,7 @@ export function Contact() {
                         null :
                         contactbannerdata.map((items, index) => {
                             return (
-                                <section key={items} className='about_banner_slides w-[100%] h-[400px] relative' style={{ background: `url(${imageurl + items.Contact_Banner_Image})`, backgroundSize: "cover" }}>
+                                <section key={items} className='about_banner_slides w-[100%] h-[400px] relative' style={{ background: `url(${imageurl + items.Contact_Banner_Image})`,backgroundPosition:"center", backgroundSize: "cover" }}>
                                     <FixedOptionHeader />
                                     <section className='bg-[#00000088] w-[100%] h-[100%] flex justify-center items-center'>
                                         <section className='w-[100%] text-center p-3'>.

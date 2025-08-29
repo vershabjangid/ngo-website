@@ -123,15 +123,15 @@ export function Donation() {
 
     return (
         <>
-            <a href='#donation_section' className='donate_now_btn fixed bottom-[100px] z-[99999] right-[2%] font-[600] bg-[#1385ff] text-white py-2 px-3 rounded-[20px]'>Donate Now</a>
-            <section id='donation_section' className='donation_section w-[100%] py-[20px] px-[20px] border-b-[1px] border-[black] '>
+            <a href='#donation_section' className='donate_now_btn fixed bottom-[100px] z-[99999] right-[2%] font-[600] bg-[#1385ff] text-white py-2 px-[10px] rounded-[20px]'>Donate Now</a>
+            <section id='donation_section' className='donation_section w-[100%] py-[20px] px-[10px] border-b-[1px] border-[black] '>
 
                 <section className='w-[100%] text-center'>
                     <h2 className='home_heading capitalize text-[35px] font-[700] text-[#1385ff]'>
                         Support Our Mission
                         <div className='heading_hoverline border-b-[3px] border-[#1385ff] m-auto mt-1 '></div>
                     </h2>
-                    <p className='text-center capitalize  my-[20px] mb-[20px] leading-[25px] text-[18px]'>
+                    <p className='text-center capitalize  my-[20px] mb-[20px] leading-[25px] text-[16px]'>
                         Your donation directly transforms lives and creates lasting change in communities worldwide
                     </p>
                 </section>

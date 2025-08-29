@@ -63,7 +63,7 @@ export function About() {
                         null :
                         aboutbannerdata.map((items, index) => {
                             return (
-                                <section key={items} className='about_banner_slides w-[100%] h-[400px] relative' style={{ background: `url(${imageurl + items.About_Banner_Image})`, backgroundSize: "cover" }}>
+                                <section key={items} className='about_banner_slides w-[100%] h-[400px] relative' style={{ background: `url(${imageurl + items.About_Banner_Image})`, backgroundPosition: "center", backgroundSize: "cover" }}>
                                     <FixedOptionHeader />
                                     <section className='bg-[#00000079] w-[100%] h-[100%] flex justify-center items-center'>
                                         <section className='w-[100%] text-center p-3'>.
@@ -87,13 +87,13 @@ export function About() {
                             return (
                                 <section key={items} className='w-[100%]' >
                                     <section className='w-[100%] h-[100%] flex justify-center items-center'>
-                                        <section className='w-[100%] text-center p-3'>.
+                                        <section className='w-[100%] text-justify p-2 px-[10px]'>.
 
                                             <div className='text-center'>
                                                 <p className=' text-[30px] font-[700] capitalize mb-1'>{items.About_Banner_Heading}</p>
                                                 <div className='heading_hoverline border-b-[3px] border-[#1385ff] w-[300px] m-auto mb-6 '></div>
                                             </div>
-                                            <p className='w-[100%] text-[18px] leading-[30px] m-auto'>{items.About_Banner_Description}</p>
+                                            <p className='w-[100%] text-[16px] leading-[30px] m-auto'>{items.About_Banner_Description}</p>
                                         </section>
                                     </section>
                                 </section>
@@ -103,7 +103,7 @@ export function About() {
 
                 {
                     aboutparagraph.length === 0 ? null :
-                        <section section className='w-[100%] py-[20px]'>
+                        <section section className='w-[100%] py-[20px] '>
                             <section id='donation_section' className='donation_section w-[100%] py-[20px] px-[10px] border-b-[1px] border-[black] '>
 
                                 <section className='w-[100%] text-center'>
@@ -111,7 +111,7 @@ export function About() {
                                         About Us
                                         <div className='heading_hoverline border-b-[3px] border-[#1385ff] m-auto mt-1 '></div>
                                     </h2>
-                                    <p className='text-center capitalize  my-[20px] mb-[20px] leading-[30px] text-[18px] '>
+                                    <p className='text-justify capitalize  my-[20px] mb-[20px] leading-[30px] text-[16px] '>
                                         For over a decade, we've been dedicated to creating sustainable change in communities worldwide. Our mission is simple: to provide hope, opportunity, and resources where they're needed most.
                                     </p>
                                 </section>
@@ -121,12 +121,12 @@ export function About() {
                                         :
                                         aboutparagraph.map((items, index) => {
                                             return (
-                                                <section key={index} className='mt-4 w-[100%] '>
+                                                <section key={index} className='mt-4 w-[100%]'>
                                                     {
                                                         items.About_Image === null ?
                                                             <section className="w-[100%] bg-[#ffffff95] backdrop-blur-[20px] rounded-[20px] flex items-center justify-center">
                                                                 <section className='about_inner_section w-[100%] border-[1px] border-[#ffffff] m-auto overflow-hidden rounded-[20px] flex justify-between' >
-                                                                    <section className='p-3 backdrop-blur-[2] w-[100%]'>
+                                                                    <section className=' px-[10px] backdrop-blur-[2] w-[100%]'>
                                                                         <section className=' capitalize text-[25px] font-[700] text-[#000000]'>
                                                                             {items.About_Heading}
                                                                             <div className='heading_hoverline border-b-[3px] border-[#1385ff] mt-2 w-[auto]'></div>
@@ -163,9 +163,9 @@ export function About() {
                                                             :
 
                                                             <section className="w-[100%] bg-[#ffffff95] backdrop-blur-[20px] rounded-[20px] flex items-center justify-center">
-                                                                <section className='about_inner_section w-[100%] border-[1px] border-[#ffffff] m-auto overflow-hidden rounded-[20px] flex justify-between' >
+                                                                <section className='about_inner_section w-[100%] border-[1px]  p-[10px] border-[#ffffff] m-auto overflow-hidden rounded-[20px] flex justify-between' >
                                                                     <section className='backdrop-blur-[2] w-[350px] h-[350px]'>
-                                                                        <img src={imageurl + items.About_Image} alt="" className='h-[100%] rounded-[20px]' />
+                                                                        <img src={imageurl + items.About_Image} alt="" className='w-[100%] rounded-[20px]' />
                                                                     </section>
 
                                                                     <section className='p-3 backdrop-blur-[2] w-[calc(100%-370px)]'>

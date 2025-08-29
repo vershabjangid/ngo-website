@@ -65,7 +65,7 @@ export function Gallery() {
                         null :
                         gallerybannerdata.map((items, index) => {
                             return (
-                                <section key={items} className='about_banner_slides w-[100%] h-[400px] relative' style={{ background: `url(${imgurl + items.Gallery_Banner_Image})`, backgroundSize: "cover" }}>
+                                <section key={items} className='about_banner_slides w-[100%] h-[400px] relative' style={{ background: `url(${imgurl + items.Gallery_Banner_Image})`,backgroundPosition:"center", backgroundSize: "cover" }}>
                                     <FixedOptionHeader />
                                     <section className='bg-[#00000088] w-[100%] h-[100%] flex justify-center items-center'>
                                         <section className='w-[100%] text-center p-3'>.
@@ -85,7 +85,7 @@ export function Gallery() {
 
                     homegallerydata === null || homegalleryimagesdata.length === 0 ?
                         null :
-                        <section className=' w-[100%] py-[20px] px-[20px] border-b-[1px] border-[black] '>
+                        <section className=' w-[100%] py-[20px] px-[10px] '>
                             <section className='w-[100%] text-center'>
                                 <h2 className='home_heading capitalize text-[30px] font-[700] '>
                                     {homegallerydata.Home_Gallery_Heading}

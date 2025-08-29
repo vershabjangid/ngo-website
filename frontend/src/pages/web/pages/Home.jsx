@@ -192,9 +192,9 @@ export function Home() {
                                                             null
                                                             :
                                                             <section className='slider_btn_section mt-5 flex justify-center'>
-                                                                <Link to={"/donate-now"} className='slider_btn bg-[#1385ff] p-4 px-6 rounded-[15px] text-white font-[600] flex items-center'>
+                                                                <a href='#donation_section' className='slider_btn bg-[#1385ff] p-4 px-6 rounded-[15px] text-white font-[600] flex items-center'>
                                                                     <CiHeart className='text-[20px]' />   <p className='ms-2'>Donate Now</p>
-                                                                </Link>
+                                                                </a>
 
                                                                 <Link to={"/sign-up"} className='slider_btn border-[1px] border-[#1385ff] bg-[white] p-4 px-6 rounded-[15px] text-[#1385ff] font-[600] flex items-center ms-2'>
                                                                     <TbUsersPlus className='text-[20px]' />   <p className='ms-2'>Become a member</p>
@@ -216,7 +216,7 @@ export function Home() {
                 {
                     aboutdata === null ?
                         null :
-                        <section className='home_about_us w-[100%] py-[50px] px-[20px] border-b-[1px] border-[black] flex'>
+                        <section className='home_about_us w-[100%] py-[50px] px-[10px] border-b-[1px] border-[black] flex'>
                             <section className='w-[30%]  flex justify-center items-center py-2'>
                                 <section className='w-[80%] rounded-[10px] border-[1px] flex'>
                                     <img src={imgurl + aboutdata.Home_About_Image} alt="" className='home_about_image w-[100%] rounded-[10px]' />
@@ -243,12 +243,12 @@ export function Home() {
                 {
                     goalsdata === null || homegoalscarddata.length === 0 ?
                         null :
-                        <section className='w-[100%] py-[20px] px-[20px] border-b-[1px] border-[black] flex'>
+                        <section className='w-[100%] py-[20px] px-[10px] border-b-[1px] border-[black] flex'>
                             <section className='w-[100%] capitalize text-center'>
                                 <h2 className='home_heading text-[30px] font-[700]'>
                                     {goalsdata.Home_Goals_Heading}
 
-                                    <div className='heading_hoverline border-b-[3px] border-[#1385ff] m-auto '></div>
+                                    <div className='heading_hoverline border-b-[3px] border-[#1385ff] m-auto mt-1'></div>
                                 </h2>
                                 <p className='text-justify my-[20px] mb-[20px] leading-[25px] text-[16px]'>
                                     {goalsdata.Home_Goals_Description}
@@ -360,7 +360,7 @@ export function Home() {
 
                     homemanagement === null || homemanagementprofiles.length === 0 ?
                         null :
-                        <section className='home_management_profile_section w-[100%] py-[20px] px-[20px] border-b-[1px] border-[black] '>
+                        <section className='home_management_profile_section w-[100%] py-[20px] px-[10px] border-b-[1px] border-[black] '>
                             <section className='w-[100%] text-center'>
                                 <h2 className='home_heading capitalize text-[30px] font-[700] text-[#1385ff]'>
                                     {homemanagement.Home_Management_Heading}
@@ -404,7 +404,7 @@ export function Home() {
 
                     homegallerydata === null || homegalleryimagesdata.length === 0 ?
                         null :
-                        <section className=' w-[100%] py-[20px] px-[20px] border-b-[1px] border-[black] '>
+                        <section className=' w-[100%] py-[20px] px-[10px] border-b-[1px] border-[black] '>
                             <section className='w-[100%] text-center'>
                                 <h2 className='home_heading capitalize text-[30px] font-[700] '>
                                     {homegallerydata.Home_Gallery_Heading}
@@ -438,10 +438,12 @@ export function Home() {
                                     })
                                 }
 
+                            </section>
+                            <div className='flex justify-center m-auto'>
                                 <Link to={"/gallery"} className='bg-[#1385ff] text-white p-3 px-5 font-[600] m-auto mt-4 rounded-[10px] flex items-center'>
                                     View Gallery <FaArrowRight className='ms-2' />
                                 </Link>
-                            </section>
+                            </div>
                         </section>
                 }
 
@@ -450,7 +452,7 @@ export function Home() {
 
                     hometeamdata === null || homemanagementprofiledata.length === 0 ?
                         null :
-                        <section className='home_management_profile_section w-[100%] py-[20px] px-[20px] border-b-[1px] border-[black] '>
+                        <section className='home_management_profile_section w-[100%] py-[20px] px-[10px] border-b-[1px] border-[black]'>
                             <section className='w-[100%] text-center'>
                                 <h2 className='home_heading capitalize text-[30px] font-[700] text-[#1385ff]'>
                                     {hometeamdata.Home_Team_Member_Heading}

@@ -64,7 +64,7 @@ export function PrivacyPolicy() {
                         null :
                         privacybannerdata.map((items, index) => {
                             return (
-                                <section key={items} className='about_banner_slides w-[100%] h-[400px] relative' style={{ background: `url(${imageurl + items.Privacy_Banner_Image})`, backgroundSize: "cover" }}>
+                                <section key={items} className='about_banner_slides w-[100%] h-[400px] relative' style={{ background: `url(${imageurl + items.Privacy_Banner_Image})`, backgroundPosition: "center", backgroundSize: "cover" }}>
                                     <FixedOptionHeader />
                                     <section className='bg-[#00000088] w-[100%] h-[100%] flex justify-center items-center'>
                                         <section className='w-[100%] text-center p-3'>.
@@ -80,21 +80,21 @@ export function PrivacyPolicy() {
                         })
                 }
 
-                <section className='w-[100%] py-[20px] px-[10px]'>
+                <section className='w-[100%] py-[20px] '>
                     {
                         privacybannerdata === null ?
                             null :
                             privacybannerdata.map((items, index) => {
                                 return (
-                                    <section key={items} className='w-[100%]' >
+                                    <section key={items} className='w-[100%]  border-b-[1px] border-[black]' >
                                         <section className='w-[100%] h-[100%] flex justify-center items-center'>
-                                            <section className='w-[100%] text-center p-3'>.
+                                            <section className='w-[100%] text-justify p-3'>.
 
                                                 <div className='text-center'>
                                                     <p className=' text-[30px] font-[700] capitalize mb-1'>{items.Privacy_Banner_Heading}</p>
                                                     <div className='heading_hoverline border-b-[3px] border-[#1385ff] w-[300px] m-auto mb-6 '></div>
                                                 </div>
-                                                <p className='w-[100%] text-[18px] leading-[30px] m-auto'>{items.Privacy_Banner_Description}</p>
+                                                <p className='w-[100%] text-[16px] leading-[30px] m-auto'>{items.Privacy_Banner_Description}</p>
 
                                             </section>
                                         </section>
@@ -106,7 +106,7 @@ export function PrivacyPolicy() {
                     {
                         privacyparagraph.length === 0 ? null :
                             <section section className='w-[100%] py-[20px]'>
-                                <section id='donation_section' className='donation_section w-[100%] py-[20px] px-[10px] border-b-[1px] border-[black] '>
+                                <section id='donation_section' className='donation_section w-[100%] py-[20px] px-[10px] '>
                                     {
                                         privacyparagraph.length === 0 ? null
                                             :

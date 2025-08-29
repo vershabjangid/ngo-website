@@ -80,7 +80,7 @@ export function NewsEvents() {
 
                     newsbannerdata === null || newsparagraph.length === 0 ?
                         null :
-                        <section className=' w-[100%] py-[20px] px-[20px] border-b-[1px] border-[black] '>
+                        <section className=' w-[100%] py-[20px] px-[10px] border-b-[1px] border-[black] '>
                             {newsbannerdata.map((items, index) => {
                                 return (
                                     <section key={index} className='w-[100%] text-center'>
@@ -105,9 +105,9 @@ export function NewsEvents() {
                         :
                         newsparagraph.map((items, index) => {
                             return (
-                                <section key={index} className='mt-4 w-[100%] '>
+                                <section key={index} className='mt-4 py-3 w-[100%] '>
                                     <section className="w-[100%] bg-[#ffffff95] backdrop-blur-[20px] rounded-[20px] flex items-center justify-center">
-                                        <section className='about_inner_section w-[100%] border-[1px] border-[#ffffff] m-auto overflow-hidden rounded-[20px] flex justify-between p-3' >
+                                        <section className='about_inner_section w-[100%] border-[1px] border-[#ffffff] m-auto overflow-hidden rounded-[20px] flex justify-between px-[10px]' >
                                             <section className='backdrop-blur-[2] w-[350px] h-[350px]'>
                                                 <img src={imageurl + items.News_Image} alt="" className='h-[100%] rounded-[20px]' />
                                             </section>
