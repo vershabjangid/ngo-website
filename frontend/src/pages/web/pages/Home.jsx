@@ -415,12 +415,12 @@ export function Home() {
                                 </p>
                             </section>
 
-                            <section className='mt-2 w-[100%] flex justify-between flex-wrap'>
+                            <section className='mt-2 w-[100%] flex justify-between items-start flex-wrap'>
                                 {
                                     homegalleryimagesdata.map((items, index) => {
                                         return (
                                             index <= 5 ?
-                                                <section key={index} className="home_gallery_cards w-[32%] flex items-center justify-center py-2">
+                                                <section key={index} className="home_gallery_cards w-[32%] flex items-center justify-center py-2 px-[10px] mt-[20px]">
                                                     <section className='home_management_card w-[100%] border-[1px] border-[black] m-auto overflow-hidden rounded-[20px]' >
                                                         <section className='w-[100%] h-[250px] rounded-b-[10px]'>
                                                             <img src={imgurl + items.Gallery_Event_Image} alt="" className='w-[100%] h-[100%]' />
