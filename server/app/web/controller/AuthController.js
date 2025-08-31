@@ -71,36 +71,56 @@ exports.websiteregister = async (req, res) => {
             Is_Verified: false
         }
 
-        if (data.Email.includes('@') && data.Email.includes('.') && data.Phone.length == 10 && data.Email !== " " && data.Phone !== " ") {
-            let insertdata = await registermodel(data)
-            insertdata.save()
-                .then(() => {
-                    res.send({
-                        Status: 1,
-                        Message: "OTP Sended Successfully"
-                    })
-                    main(data)
+        let viewregister = await registermodel.find({ Email: data.Email, Phone: data.Phone, Is_Verified: false })
+
+        if (viewregister !== null) {
+            let updatedata = await registermodel.updateOne({ _id: viewregister._id }, { Password: data.Password, OTP_Value: data.OTP_Value })
+            if (updatedata.acknowledgement > 0) {
+                res.send({
+                    Status: 1,
+                    Message: "OTP Sended Successfully"
                 })
-                .catch((error) => {
-                    if (error.code === 11000) {
-                        res.send({
-                            Status: 0,
-                            Message: "Data Already Exists"
-                        })
-                    }
-                    else {
-                        res.send({
-                            Status: 0,
-                            Message: "Data Missing"
-                        })
-                    }
+                main(data)
+            }
+            else {
+                res.send({
+                    Status: 0,
+                    Message: "Please try after some time"
                 })
+            }
         }
         else {
-            res.send({
-                Status: 0,
-                Message: "Data Missing"
-            })
+            if (data.Email.includes('@') && data.Email.includes('.') && data.Phone.length == 10 && data.Email !== " " && data.Phone !== " ") {
+                let insertdata = await registermodel(data)
+                insertdata.save()
+                    .then(() => {
+                        res.send({
+                            Status: 1,
+                            Message: "OTP Sended Successfully"
+                        })
+                        main(data)
+                    })
+                    .catch((error) => {
+                        if (error.code === 11000) {
+                            res.send({
+                                Status: 0,
+                                Message: "Data Already Exists"
+                            })
+                        }
+                        else {
+                            res.send({
+                                Status: 0,
+                                Message: "Data Missing"
+                            })
+                        }
+                    })
+            }
+            else {
+                res.send({
+                    Status: 0,
+                    Message: "Data Missing"
+                })
+            }
         }
     }
     catch (error) {

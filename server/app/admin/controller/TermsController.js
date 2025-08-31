@@ -502,7 +502,7 @@ exports.updatetermsextraparagraphcontroller = async (req, res) => {
             Terms_Section_Id: req.body.Terms_Section_Id === null || req.body.Terms_Section_Id === '' ? viewdata.Terms_Section_Id : req.body.Terms_Section_Id,
             Terms_Paragraph: req.body.Terms_Paragraph === null || req.body.Terms_Paragraph === '' ? viewdata.Terms_Paragraph : req.body.Terms_Paragraph
         }
-console.log(data)
+        console.log(data)
         let updatedata = await termsextraparagraphmodel.updateOne({ _id: data._id }, {
             Terms_Section_Id: data.Terms_Section_Id,
             Terms_Paragraph: data.Terms_Paragraph

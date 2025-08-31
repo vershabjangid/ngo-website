@@ -77,6 +77,7 @@ import { ViewMembershipTransactions } from './pages/web/pages/userpanel/ViewMemb
 import { Profile } from './pages/web/pages/userpanel/Profile';
 import { WebDashboardTransactions } from './pages/webadmin/pages/WebDashboardTransactions';
 import { WebDashboardMembershipTransactions } from './pages/webadmin/pages/WebDashboardMembershipTransactions';
+import { Receipt } from './pages/web/pages/userpanel/Receipt';
 
 function App() {
   return (
@@ -110,6 +111,7 @@ function App() {
               <Route path="/transactions" element={<Transactions />} />
               <Route path="/membership-transactions" element={<ViewMembershipTransactions />} />
               <Route path="/profile" element={<Profile />} />
+              <Route path='/receipt' element={<Receipt />} />
             </Route>
           </Route>
 

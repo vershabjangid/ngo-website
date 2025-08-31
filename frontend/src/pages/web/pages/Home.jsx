@@ -283,8 +283,8 @@ export function Home() {
                                                                     {
                                                                         status === index ?
                                                                             <section className='home_our_goals_section w-[100%] flex justify-between p-[10px] rounded-[20px] mb-[20px]' onClick={() => setmodel(true)}>
-                                                                                <section className='w-[400px] h-[400px] rounded-[10px] border-[1px] flex'>
-                                                                                    <img src={imgurl + items.Home_Goals_Card_Icon} alt="" className=' w-[100%] h-auto rounded-[10px]' />
+                                                                                <section className='w-[400px] shadow rounded-[10px] border-[1px] flex'>
+                                                                                    <img src={imgurl + items.Home_Goals_Card_Icon} alt="" className='home_about_image w-[100%] h-auto rounded-[10px]' />
                                                                                 </section>
                                                                                 <section className='w-[calc(100%-420px)] text-start'>
                                                                                     <p className='my-[5px] text-[20px] font-[600]'>
@@ -384,7 +384,7 @@ export function Home() {
                                                         <section className='p-3 bg-[#ffffff82] backdrop-blur-[2]'>
                                                             <p className='font-[700] text-[20px] capitalize'>{items.Home_Management_Profile_Name}</p>
                                                             <p className='font-[600] text-[14px] text-[#1385ff] capitalize'>{items.Home_Management_Profile_Designation}</p>
-                                                            <p className='text-[12px] mt-2 text-[grey] capitalize'>{items.Home_Management_Profile_Description}</p>
+                                                            <p className='text-[12px] mt-2 text-[grey] capitalize'>{items.Home_Management_Profile_Description} <Link className='text-[#3970de] font-[600]' to={'/about'}>Readmore...</Link></p>
                                                         </section>
                                                     </section>
                                                 </section>
@@ -448,7 +448,7 @@ export function Home() {
                 }
 
 
-                {
+                {/* {
 
                     hometeamdata === null || homemanagementprofiledata.length === 0 ?
                         null :
@@ -487,7 +487,7 @@ export function Home() {
                             </section>
                         </section>
 
-                }
+                } */}
                 <QuickLinks />
                 <Donation />
                 <Footer />

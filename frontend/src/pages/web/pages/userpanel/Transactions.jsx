@@ -8,7 +8,7 @@ import { apiurl, getCookie } from '../../../../apiurl/Apiurl'
 import { FaDollarSign, FaDownload, FaXmark } from 'react-icons/fa6'
 import { BsPatchCheckFill, BsPatchExclamationFill } from 'react-icons/bs'
 import { LuIndianRupee } from 'react-icons/lu'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useReactToPrint } from 'react-to-print'
 
 export function Transactions() {
@@ -65,6 +65,12 @@ export function Transactions() {
 
     const contentRef = useRef(null);
     const reactToPrintFn = useReactToPrint({ contentRef });
+
+    let navigate = useNavigate()
+
+    let receiptnavigate = (value) => {
+        navigate('/receipt', { state: value })
+    }
     return (
         <>
             {
@@ -231,6 +237,11 @@ export function Transactions() {
 
                                                     <button className='text-[12px] bg-[#1385ff] text-white font-[600] ms-4 px-2 py-2 rounded-[20px]' onClick={() => setmodal(true) || setmodaldata(items)}>
                                                         View Details
+                                                    </button>
+
+
+                                                    <button className='text-[12px] bg-[#1385ff] text-white font-[600] ms-2 px-2 py-2 rounded-[20px]' onClick={() => receiptnavigate(items)}>
+                                                        View  Receipt
                                                     </button>
                                                 </div>
                                             </section>
