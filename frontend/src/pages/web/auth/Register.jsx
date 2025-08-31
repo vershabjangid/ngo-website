@@ -31,11 +31,6 @@ export function Register() {
         onSubmit: (values, { resetForm }) => {
             // setloader(true)
             insertdata(formik.values)
-            resetForm({
-                Email: "",
-                Phone: "",
-                Password: ""
-            })
         }
     })
 
