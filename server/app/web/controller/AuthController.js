@@ -71,11 +71,11 @@ exports.websiteregister = async (req, res) => {
             Is_Verified: false
         }
 
-        let viewregister = await registermodel.findOne({ Email: data.Email, Phone: data.Phone, Is_Verified: false })
+        let viewregister = await registermodel.findOne({ Email: data.Email, Is_Verified: false })
 
         if (viewregister !== null) {
             let updatedata = await registermodel.updateOne({ _id: viewregister._id }, { Password: data.Password, OTP_Value: data.OTP_Value })
-            if (updatedata.acknowledgement > 0) {
+            if (updatedata.acknowledgement > 0) {   
                 res.send({
                     Status: 1,
                     Message: "OTP Sended Successfully"
