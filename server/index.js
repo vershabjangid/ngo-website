@@ -57,7 +57,7 @@ app.use('/user', websitesession, websiteroutes)
 // websocket connection 
 const io = new Server(server, {
     cors: {
-        origin: "http://194.238.22.240:3001",
+        origin: "http://194.238.22.240:3000",
         methods: ["GET", "POST"],
     }
 })
