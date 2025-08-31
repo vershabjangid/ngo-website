@@ -75,7 +75,7 @@ exports.websiteregister = async (req, res) => {
 
         if (viewregister !== null) {
             let updatedata = await registermodel.updateOne({ _id: viewregister._id }, { Password: data.Password, Phone: data.Phone, OTP_Value: data.OTP_Value })
-            if (updatedata.acknowledgement > 0) {
+            if (updatedata.modifiedCount > 0) {
                 res.send({
                     Status: 1,
                     Message: "OTP Sended Successfully"
